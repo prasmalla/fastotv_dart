@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:convert';
+
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
 
 import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
-import 'package:fastotv_dart/commands_json.dart';
 import 'package:fastotv_dart/commands.dart';
+import 'package:fastotv_dart/src/commands_json.dart';
 
 String generateHash(String data) {
   return md5.convert(utf8.encode(data)).toString();
@@ -58,20 +59,20 @@ class Client {
       if (_observer != null) {
         _observer.onConnectionStateChanged(ClientConnectionState.CONNECTED);
       }
-    } catch(exception, trace) {
+    } catch (exception, trace) {
       if (_observer != null) {
         _observer.onConnectionStateChanged(ClientConnectionState.DISCONNECTED);
       }
     }
   }
 
-  void auth(String email, String password, String deviceId) {
-    if (email.isEmpty || password.isEmpty || deviceId.isEmpty) {
+  void auth(String email, String password, String device_id) {
+    if (email.isEmpty || password.isEmpty || device_id.isEmpty) {
       return;
     }
 
     String hash = generateHash(password);
-    AuthInfo user = AuthInfo(email, hash, deviceId);
+    AuthInfo user = AuthInfo(email, hash, device_id);
     var request = activateRequest(generateID(), user);
     return _sendRequest(request);
   }
@@ -146,14 +147,14 @@ class Client {
     int size = bytedata.getUint32(0, Endian.big);
     List<int> decoded = gzip.decode(bytes.sublist(4, size));
 
-    String respStr = String.fromCharCodes(decoded);
-    Map<String, dynamic> requestOrResponse = json.decode(respStr);
-    if (requestOrResponse.isEmpty) {
+    String req_or_resp_data = String.fromCharCodes(decoded);
+    Map<String, dynamic> request_or_response = json.decode(req_or_resp_data);
+    if (request_or_response.isEmpty) {
       return;
     }
 
-    if (requestOrResponse.containsKey('method')) {
-      JsonRpcRequest req = JsonRpcRequest.fromJson(requestOrResponse);
+    if (request_or_response.containsKey('method')) {
+      JsonRpcRequest req = JsonRpcRequest.fromJson(request_or_response);
       if (_observer != null) {
         _observer.processRequest(req);
       }
@@ -161,7 +162,7 @@ class Client {
     }
 
     // response
-    JsonRpcResponse resp = JsonRpcResponse.fromJson(requestOrResponse);
+    JsonRpcResponse resp = JsonRpcResponse.fromJson(request_or_response);
     if (!resp.isValid()) {
       return;
     }
