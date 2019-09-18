@@ -1,0 +1,13 @@
+name: fastotv
+author: Alexandr Topilski <support@fastogt.com>
+description: FastoTV Dart client.
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  crypto:
+  archive:
+
+dev_dependencies:
+  test: ^1.3.0
