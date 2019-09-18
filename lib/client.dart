@@ -3,10 +3,11 @@ import 'dart:typed_data';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
-import 'package:fastotv/json_rpc.dart';
-import 'package:fastotv/commands_info/auth_info.dart';
-import 'package:fastotv/commands_json.dart';
-import 'package:fastotv/commands.dart';
+
+import 'package:fastotv_dart/json_rpc.dart';
+import 'package:fastotv_dart/commands_info/auth_info.dart';
+import 'package:fastotv_dart/commands_json.dart';
+import 'package:fastotv_dart/commands.dart';
 
 String generateHash(String data) {
   return md5.convert(utf8.encode(data)).toString();

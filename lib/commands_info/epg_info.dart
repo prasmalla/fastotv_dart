@@ -1,4 +1,4 @@
-import 'package:fastotv/commands_info/programme_info.dart';
+import 'package:fastotv_dart/commands_info/programme_info.dart';
 
 class EpgInfo {
   final String id;

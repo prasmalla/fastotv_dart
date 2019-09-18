@@ -1,4 +1,4 @@
-import 'package:fastotv/commands_info/epg_info.dart';
+import 'package:fastotv_dart/commands_info/epg_info.dart';
 
 class ChannelInfo {
   final String id;
