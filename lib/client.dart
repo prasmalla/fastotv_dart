@@ -29,6 +29,7 @@ class Client {
   IClientObserver _observer;
   int _id = 0;
   final Map<String, JsonRpcRequest> _requests = {};
+  List<int> _recv_buffer = [];
 
   Client();
 
@@ -140,22 +141,8 @@ class Client {
     print(error);
   }
 
-  void _socketDataReceived(List<int> data) {
-    if (data.length < 4) {
-      return;
-    }
-
-    final Uint8List data_size = data.sublist(0, 4);
-    final byte_data = ByteData.view(data_size.buffer);
-    int size = byte_data.getUint32(0, Endian.big);
-
-    if (data.length < size + 4) {
-      return;
-    }
-
-    final payload = data.sublist(4, size);
+  void _processMessage(List<int> payload) {
     List<int> decoded = gzip.decode(payload);
-
     String req_or_resp_data = String.fromCharCodes(decoded);
     Map<String, dynamic> request_or_response = json.decode(req_or_resp_data);
     if (request_or_response.isEmpty) {
@@ -192,5 +179,25 @@ class Client {
     if (_observer != null) {
       _observer.processResponse(req, resp);
     }
+  }
+
+  void _socketDataReceived(List<int> data) {
+    _recv_buffer += data;
+    if (_recv_buffer.length < 4) {
+      return;
+    }
+
+    final Uint8List data_size = _recv_buffer.sublist(0, 4);
+    final byte_data = ByteData.view(data_size.buffer);
+    int size = byte_data.getUint32(0, Endian.big);
+
+    int message_size = size + 4;
+    if (_recv_buffer.length < message_size) {
+      return;
+    }
+
+    final payload = _recv_buffer.sublist(4, size);
+    _processMessage(payload);
+    _recv_buffer = _recv_buffer.sublist(message_size);
   }
 }
