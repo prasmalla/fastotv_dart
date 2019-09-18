@@ -140,12 +140,21 @@ class Client {
     print(error);
   }
 
-  void _socketDataReceived(data) {
-    Uint8List bytes = data;
-    final Uint8List message = bytes.sublist(0, 4);
-    final bytedata = ByteData.view(message.buffer);
-    int size = bytedata.getUint32(0, Endian.big);
-    List<int> decoded = gzip.decode(bytes.sublist(4, size));
+  void _socketDataReceived(List<int> data) {
+    if (data.length < 4) {
+      return;
+    }
+
+    final Uint8List data_size = data.sublist(0, 4);
+    final byte_data = ByteData.view(data_size.buffer);
+    int size = byte_data.getUint32(0, Endian.big);
+
+    if (data.length < size + 4) {
+      return;
+    }
+
+    final payload = data.sublist(4, size);
+    List<int> decoded = gzip.decode(payload);
 
     String req_or_resp_data = String.fromCharCodes(decoded);
     Map<String, dynamic> request_or_response = json.decode(req_or_resp_data);
