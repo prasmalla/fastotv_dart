@@ -187,7 +187,7 @@ class Client {
       return;
     }
 
-    final Uint8List data_size = _recv_buffer.sublist(0, 4);
+    final Uint8List data_size = Uint8List.fromList(_recv_buffer.sublist(0, 4));
     final byte_data = ByteData.view(data_size.buffer);
     int size = byte_data.getUint32(0, Endian.big);
 
