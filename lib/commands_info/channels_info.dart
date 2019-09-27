@@ -1,9 +1,6 @@
 import 'package:fastotv_dart/commands_info/epg_info.dart';
 
-class Type {
-  static const PUBLIC = 0;
-  static const PRIVATE = 1;
-}
+enum Type { PUBLIC, PRIVATE }
 
 class ChannelInfo {
   final String id;
