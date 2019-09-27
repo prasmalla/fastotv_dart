@@ -1,10 +1,8 @@
 import 'package:fastotv_dart/commands_info/epg_info.dart';
 
-enum Type { PUBLIC, PRIVATE }
-
 class ChannelInfo {
   final String id;
-  final Type type;
+  final int type;
   final EpgInfo epg;
   final bool video;
   final bool audio;
