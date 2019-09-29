@@ -69,7 +69,7 @@ class JsonRpcResponse {
   }
 
   bool isError() {
-    if (error = null) {
+    if (error == null) {
       return false;
     }
 
