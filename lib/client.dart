@@ -8,6 +8,7 @@ import 'package:convert/convert.dart';
 import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
 import 'package:fastotv_dart/commands.dart';
+import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/src/commands_json.dart';
 
 String generateHash(String data) {
@@ -67,7 +68,18 @@ class Client {
     }
   }
 
-  void auth(String email, String password, String device_id) {
+  void activate(String email, String password) {
+    if (email.isEmpty || password.isEmpty) {
+      return;
+    }
+
+    String hash = generateHash(password);
+    LoginInfo user = LoginInfo(email, hash);
+    var request = activateRequest(generateID(), user);
+    return _sendRequest(request);
+  }
+
+  void login(String email, String password, String device_id) {
     if (email.isEmpty || password.isEmpty || device_id.isEmpty) {
       return;
     }
@@ -168,7 +180,7 @@ class Client {
       return;
     }
 
-    if (req.method == CLIENT_ACTIVE) {
+    if (req.method == CLIENT_LOGIN) {
       if (_observer != null) {
         if (resp.isMessage()) {
           _observer.onConnectionStateChanged(ClientConnectionState.ACTIVE);
