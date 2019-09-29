@@ -86,7 +86,7 @@ class Client {
 
     String hash = generateHash(password);
     AuthInfo user = AuthInfo(email, hash, device_id);
-    var request = activateRequest(generateID(), user);
+    var request = loginRequest(generateID(), user);
     return _sendRequest(request);
   }
 
