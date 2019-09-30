@@ -11,13 +11,15 @@ class ChannelInfo {
   ChannelInfo(
       this.id, this.type, this.ui_type, this.epg, this.video, this.audio);
 
-  ChannelInfo.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        type = json['type'],
-        ui_type = json['ui_type'],
-        epg = EpgInfo.fromJson(json['epg']),
-        video = json['video'],
-        audio = json['audio'];
+  factory ChannelInfo.fromJson(Map<String, dynamic> json) {
+    final id = json['id'];
+    final type = json['type'];
+    final ui_type = json['ui_type'];
+    final epg = EpgInfo.fromJson(json['epg']);
+    final video = json['video'];
+    final audio = json['audio'];
+    return ChannelInfo(id, type, ui_type, epg, video, audio);
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,
