@@ -9,10 +9,23 @@ JsonRpcRequest loginRequest(String id, dynamic params) {
   return JsonRpcRequest(id, CLIENT_LOGIN, params);
 }
 
+JsonRpcRequest pingRequest(String id, dynamic params) {
+  return JsonRpcRequest(id, CLIENT_PING, params);
+}
+
+JsonRpcRequest getServerInfoRequest(String id, dynamic params) {
+  return JsonRpcRequest(id, CLIENT_GET_SERVER_INFO, params);
+}
+
 JsonRpcRequest getChannelsRequest(String id) {
   return JsonRpcRequest(id, CLIENT_GET_CHANNELS, null);
 }
 
+JsonRpcRequest getRuntimeChannelInfoRequest(String id) {
+  return JsonRpcRequest(id, CLIENT_GET_RUNTIME_CHANNEL_INFO, null);
+}
+
+// responses
 JsonRpcResponse pongResponse(String id, dynamic result) {
   return JsonRpcResponse(id, result);
 }
