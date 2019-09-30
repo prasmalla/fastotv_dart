@@ -29,3 +29,7 @@ JsonRpcRequest getRuntimeChannelInfoRequest(String id) {
 JsonRpcResponse pongResponse(String id, dynamic result) {
   return JsonRpcResponse(id, result);
 }
+
+JsonRpcResponse clientInfoResponse(String id, dynamic result) {
+  return JsonRpcResponse(id, result);
+}

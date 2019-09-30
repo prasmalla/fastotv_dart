@@ -7,6 +7,7 @@ import 'package:convert/convert.dart';
 
 import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
+import 'package:fastotv_dart/commands_info/client_info.dart';
 import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/src/commands_json.dart';
@@ -97,6 +98,16 @@ class Client {
 
   void pong(String id) {
     var resp = pongResponse(id, {});
+    return _sendResponse(resp);
+  }
+
+  void notificationTextOK(String id) {
+    var resp = pongResponse(id, {});
+    return _sendResponse(resp);
+  }
+
+  void clientInfo(String id, ClientInfo cl) {
+    var resp = clientInfoResponse(id, cl.toJson());
     return _sendResponse(resp);
   }
 
