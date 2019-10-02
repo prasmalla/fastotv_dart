@@ -18,7 +18,7 @@ class ChannelInfo {
     final type = json['type'];
     final ui_type = json['ui_type'];
     final group = json['group'];
-    final tags = json['tags'];
+    final List<String> tags = json['tags'].cast<String>();
     final epg = EpgInfo.fromJson(json['epg']);
     final video = json['video'];
     final audio = json['audio'];
