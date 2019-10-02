@@ -5,7 +5,7 @@ class ChannelInfo {
   final int type;
   final int ui_type;
   final String group;
-  final List<dynamic> tags;
+  List<String> tags = List<String>();
   final EpgInfo epg;
   final bool video;
   final bool audio;
