@@ -24,6 +24,8 @@ abstract class IClientObserver {
   void processResponse(JsonRpcRequest req, JsonRpcResponse resp);
 
   void onConnectionStateChanged(ClientConnectionState newState);
+
+  void onSocketError(dynamic error);
 }
 
 class Client {
@@ -161,7 +163,9 @@ class Client {
   }
 
   void _socketErrorReceived(error, trace) {
-    print(error);
+    if (_observer != null) {
+      _observer.onSocketError(error);
+    }
   }
 
   void _processMessage(List<int> payload) {
