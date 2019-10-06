@@ -26,6 +26,8 @@ abstract class IClientObserver {
   void onConnectionStateChanged(ClientConnectionState newState);
 
   void onSocketError(dynamic error);
+
+  void onDisconnected(dynamic exception);
 }
 
 class Client {
@@ -67,6 +69,7 @@ class Client {
     } catch (exception, trace) {
       if (_observer != null) {
         _observer.onConnectionStateChanged(ClientConnectionState.DISCONNECTED);
+        _observer.onDisconnected(exception);
       }
     }
   }
