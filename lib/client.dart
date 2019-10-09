@@ -8,6 +8,7 @@ import 'package:convert/convert.dart';
 import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
 import 'package:fastotv_dart/commands_info/client_info.dart';
+import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
 import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/src/commands_json.dart';
@@ -98,6 +99,12 @@ class Client {
 
   void requestChannels() {
     var request = getChannelsRequest(generateID());
+    return _sendRequest(request);
+  }
+
+  void requestRuntimeChannelInfo(String sid) {
+    RuntimeChannelLiteInfo run = RuntimeChannelLiteInfo(sid);
+    var request = getRuntimeChannelInfoRequest(generateID(), run);
     return _sendRequest(request);
   }
 

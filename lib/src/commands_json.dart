@@ -21,8 +21,8 @@ JsonRpcRequest getChannelsRequest(String id) {
   return JsonRpcRequest(id, CLIENT_GET_CHANNELS, null);
 }
 
-JsonRpcRequest getRuntimeChannelInfoRequest(String id) {
-  return JsonRpcRequest(id, CLIENT_GET_RUNTIME_CHANNEL_INFO, null);
+JsonRpcRequest getRuntimeChannelInfoRequest(String id, dynamic params) {
+  return JsonRpcRequest(id, CLIENT_GET_RUNTIME_CHANNEL_INFO, params);
 }
 
 // responses
