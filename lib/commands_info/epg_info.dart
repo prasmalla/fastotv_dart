@@ -11,7 +11,7 @@ class EpgInfo {
 
   EpgInfo.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        urls = json['urls'],
+        urls = json['urls'].cast<String>(),
         display_name = json['display_name'],
         icon = json['icon'] {
     List<dynamic> prog = json['programs'];
