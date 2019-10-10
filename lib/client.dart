@@ -109,7 +109,9 @@ class Client {
   }
 
   void pong(String id) {
-    var resp = pongResponse(id, {});
+    final now = new DateTime.now();
+    final utc = now.toUtc();
+    var resp = pongResponse(id, {'timestamp': utc.millisecondsSinceEpoch});
     return _sendResponse(resp);
   }
 
