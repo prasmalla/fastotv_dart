@@ -27,23 +27,40 @@ class OperationSystemInfo {
       };
 }
 
+class Project {
+  final String name;
+  final String version;
+
+  Project(this.name, this.version);
+
+  factory Project.fromJson(Map<String, dynamic> json) {
+    final name = json['name'];
+    final version = json['version'];
+    return Project(name, version);
+  }
+
+  Map<String, dynamic> toJson() => {'name': name, 'version': version};
+}
+
 class ClientInfo {
   final String login;
   final String device_id;
+  final Project project;
   final OperationSystemInfo os;
   final String cpu_brand;
   final int bandwidth;
 
-  ClientInfo(
-      this.login, this.device_id, this.os, this.cpu_brand, this.bandwidth);
+  ClientInfo(this.login, this.device_id, this.project, this.os, this.cpu_brand,
+      this.bandwidth);
 
   factory ClientInfo.fromJson(Map<String, dynamic> json) {
     final login = json['login'];
     final device_id = json['device_id'];
+    final project = Project.fromJson(json['os']);
     final os = OperationSystemInfo.fromJson(json['os']);
     final cpu_brand = json['cpu_brand'];
     final bandwidth = json['bandwidth'];
-    return ClientInfo(login, device_id, os, cpu_brand, bandwidth);
+    return ClientInfo(login, device_id, project, os, cpu_brand, bandwidth);
   }
 
   Map<String, dynamic> toJson() => {
