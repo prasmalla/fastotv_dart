@@ -1,7 +1,7 @@
 class JsonRpcRequest {
   String jsonrpc = '2.0';
   String method;
-  dynamic params;
+  dynamic params; // should be optional
   String id;
 
   JsonRpcRequest(this.id, this.method, this.params);

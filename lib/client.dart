@@ -108,6 +108,14 @@ class Client {
     return _sendRequest(request);
   }
 
+  void ping() {
+    final now = new DateTime.now();
+    final utc = now.toUtc();
+    var request =
+        pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
+    return _sendRequest(request);
+  }
+
   void pong(String id) {
     final now = new DateTime.now();
     final utc = now.toUtc();
@@ -121,7 +129,7 @@ class Client {
   }
 
   void clientInfo(String id, ClientInfo cl) {
-    var resp = clientInfoResponse(id, cl.toJson());
+    var resp = clientInfoResponse(id, cl);
     return _sendResponse(resp);
   }
 
