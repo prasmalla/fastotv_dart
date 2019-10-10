@@ -56,7 +56,7 @@ class ClientInfo {
   factory ClientInfo.fromJson(Map<String, dynamic> json) {
     final login = json['login'];
     final device_id = json['device_id'];
-    final project = Project.fromJson(json['os']);
+    final project = Project.fromJson(json['project']);
     final os = OperationSystemInfo.fromJson(json['os']);
     final cpu_brand = json['cpu_brand'];
     final bandwidth = json['bandwidth'];
@@ -66,6 +66,7 @@ class ClientInfo {
   Map<String, dynamic> toJson() => {
         'login': login,
         'device_id': device_id,
+        'project': project.toJson(),
         'os': os.toJson(),
         'cpu_brand': cpu_brand,
         'bandwidth': bandwidth
