@@ -1,4 +1,6 @@
 1.2.0 / October 12, 2019
 [Alexandr Topilski]
+[Vadim Turko]
 - Login and Activate requests
 - Handle VODS
+- Bugs fixes
