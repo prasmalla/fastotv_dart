@@ -7,7 +7,7 @@ class MovieInfo {
   MovieInfo(this.urls, this.description, this.display_name, this.preview_icon);
 
   MovieInfo.fromJson(Map<String, dynamic> json)
-      : urls = json['urls'],
+      : urls = json['urls'].cast<String>(),
         description = json['description'],
         display_name = json['display_name'],
         preview_icon = json['preview_icon'] {}
