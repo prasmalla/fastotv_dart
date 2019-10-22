@@ -22,8 +22,8 @@ class MovieInfo {
     final description = json['description'];
     final display_name = json['display_name'];
     final preview_icon = json['preview_icon'];
-    final type = json['type'];
-    return MovieInfo(urls, description, display_name, preview_icon, Type2Enum(type));
+    final type = Type2Enum(json['type']);
+    return MovieInfo(urls, description, display_name, preview_icon, type);
   }
 
   Map<String, dynamic> toJson() => {
