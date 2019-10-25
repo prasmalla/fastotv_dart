@@ -26,7 +26,8 @@ class MovieInfo {
     return MovieInfo(urls, description, display_name, preview_icon, type);
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         'urls': urls,
         'description': description,
         'display_name': display_name,
