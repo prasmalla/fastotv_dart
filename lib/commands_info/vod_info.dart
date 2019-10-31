@@ -7,6 +7,10 @@ class VodInfo extends StreamBaseInfo {
   VodInfo(id, type, group, this.vod, video, audio)
       : super(id, type, group, video, audio) {}
 
+  String primaryLink() {
+    return vod.urls[0];
+  }
+
   factory VodInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
     final vod = MovieInfo.fromJson(json['vod']);

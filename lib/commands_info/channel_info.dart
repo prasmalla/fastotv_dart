@@ -7,6 +7,10 @@ class ChannelInfo extends StreamBaseInfo {
   ChannelInfo(id, type, group, this.epg, video, audio)
       : super(id, type, group, video, audio) {}
 
+  String primaryLink() {
+    return epg.urls[0];
+  }
+
   factory ChannelInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
     final epg = EpgInfo.fromJson(json['epg']);

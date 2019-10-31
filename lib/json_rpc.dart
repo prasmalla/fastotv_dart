@@ -4,10 +4,10 @@ class JsonRpcRequest {
   String jsonrpc = '2.0';
   final String method;
   final String id;
-  Optional<dynamic> params;
+  Optional<dynamic> params = Optional<dynamic>.absent();
 
-  JsonRpcRequest(
-      {this.id, this.method, this.params = const Optional<dynamic>.absent()});
+  JsonRpcRequest({this.id, this.method, dynamic params = null})
+      : params = Optional<dynamic>.fromNullable(params) {}
 
   bool isValid() {
     return method.isNotEmpty;
@@ -43,7 +43,7 @@ class JsonRpcRequest {
         id = json['id'],
         method = json['method'] {
     if (json.containsKey('params')) {
-      params = Optional<dynamic>.of(json['params']);
+      params = Optional<dynamic>.fromNullable(json['params']);
     }
   }
 }
@@ -66,27 +66,22 @@ class Error {
 class JsonRpcResponse {
   String jsonrpc = '2.0';
   final String id;
-  Optional<dynamic> result;
-  Optional<Error> error;
+  Optional<dynamic> result = Optional<dynamic>.absent();
+  Optional<Error> error = Optional<Error>.absent();
 
-  JsonRpcResponse(this.id, this.result);
+  JsonRpcResponse({this.id, dynamic result = null, Error error = null})
+      : result = Optional<dynamic>.fromNullable(result),
+        error = Optional<Error>.fromNullable(error) {}
 
   bool isValid() {
     return id.isNotEmpty;
   }
 
   bool isMessage() {
-    if (result == null) {
-      return false;
-    }
-
     return result.isPresent;
   }
 
   bool isError() {
-    if (error == null) {
-      return false;
-    }
     return error.isPresent;
   }
 
