@@ -1,10 +1,13 @@
+import 'package:quiver/core.dart';
+
 class JsonRpcRequest {
   String jsonrpc = '2.0';
-  String method;
-  dynamic params; // should be optional
-  String id;
+  final String method;
+  final String id;
+  Optional<dynamic> params;
 
-  JsonRpcRequest(this.id, this.method, this.params);
+  JsonRpcRequest(
+      {this.id, this.method, this.params = const Optional<dynamic>.absent()});
 
   bool isValid() {
     return method.isNotEmpty;
@@ -16,17 +19,33 @@ class JsonRpcRequest {
 
   Map<String, dynamic> toJson() {
     if (id.isEmpty) {
-      return {'jsonrpc': jsonrpc, 'method': method, 'params': params};
+      // notification
+      Map<String, dynamic> result = {'jsonrpc': jsonrpc, 'method': method};
+      if (params.isPresent) {
+        result['params'] = params;
+      }
+      return result;
     }
 
-    return {'jsonrpc': jsonrpc, 'id': id, 'method': method, 'params': params};
+    Map<String, dynamic> result = {
+      'jsonrpc': jsonrpc,
+      'id': id,
+      'method': method
+    };
+    if (params.isPresent) {
+      result['params'] = params;
+    }
+    return result;
   }
 
   JsonRpcRequest.fromJson(Map<String, dynamic> json)
       : jsonrpc = json['jsonrpc'],
         id = json['id'],
-        method = json['method'],
-        params = json['params'];
+        method = json['method'] {
+    if (json.containsKey('params')) {
+      params = json['params'];
+    }
+  }
 }
 
 class Error {
@@ -34,10 +53,6 @@ class Error {
   final String message;
 
   Error(this.code, this.message);
-
-  bool isValid() {
-    return message.isNotEmpty;
-  }
 
   Map<String, dynamic> toJson() {
     return {'code': code, 'message': message};
@@ -50,9 +65,9 @@ class Error {
 
 class JsonRpcResponse {
   String jsonrpc = '2.0';
-  String id;
-  dynamic result;
-  Error error;
+  final String id;
+  Optional<dynamic> result;
+  Optional<Error> error;
 
   JsonRpcResponse(this.id, this.result);
 
@@ -61,19 +76,11 @@ class JsonRpcResponse {
   }
 
   bool isMessage() {
-    if (result == null) {
-      return false;
-    }
-
-    return result.isNotEmpty;
+    return result.isPresent;
   }
 
   bool isError() {
-    if (error == null) {
-      return false;
-    }
-
-    return error.isValid();
+    return error.isPresent;
   }
 
   Map<String, dynamic> toJson() {
@@ -86,11 +93,17 @@ class JsonRpcResponse {
 
   JsonRpcResponse.fromJson(Map<String, dynamic> json)
       : jsonrpc = json['jsonrpc'],
-        id = json['id'],
-        result = json['result'] {
-    dynamic err = json['error'];
-    if (err != null) {
-      error = Error.fromJson(err);
+        id = json['id'] {
+    if (json.containsKey('error')) {
+      final err = Error.fromJson(json['error']);
+      error = Optional<Error>.of(err);
+      return;
+    }
+
+    if (json.containsKey('result')) {
+      final res = json['result'];
+      result = Optional<dynamic>.of(res);
+      return;
     }
   }
 }

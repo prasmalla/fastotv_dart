@@ -1,5 +1,7 @@
 import 'package:fastotv_dart/commands_info/programme_info.dart';
 
+import 'package:quiver/core.dart';
+
 class EpgInfo {
   final String id;
   final List<String> urls;
@@ -25,4 +27,14 @@ class EpgInfo {
         'icon': icon,
         'programs': programs
       };
+
+  Optional<ProgrammeInfo> FindProgrammeByTime(int time) {
+    for (final pr in programs) {
+      if (time >= pr.start && time <= pr.stop) {
+        return Optional<ProgrammeInfo>.of(pr);
+      }
+    }
+
+    return Optional<ProgrammeInfo>.absent();
+  }
 }
