@@ -7,6 +7,10 @@ class ChannelInfo extends StreamBaseInfo {
   ChannelInfo(id, type, group, this.epg, video, audio)
       : super(id, type, group, video, audio) {}
 
+  String displayName() {
+    return epg.display_name;
+  }
+
   String primaryLink() {
     return epg.urls[0];
   }

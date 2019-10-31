@@ -11,6 +11,10 @@ class VodInfo extends StreamBaseInfo {
     return vod.urls[0];
   }
 
+  String displayName() {
+    return vod.display_name;
+  }
+
   factory VodInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
     final vod = MovieInfo.fromJson(json['vod']);
