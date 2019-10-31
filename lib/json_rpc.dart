@@ -22,7 +22,7 @@ class JsonRpcRequest {
       // notification
       Map<String, dynamic> result = {'jsonrpc': jsonrpc, 'method': method};
       if (params.isPresent) {
-        result['params'] = params;
+        result['params'] = params.value;
       }
       return result;
     }
@@ -33,7 +33,7 @@ class JsonRpcRequest {
       'method': method
     };
     if (params.isPresent) {
-      result['params'] = params;
+      result['params'] = params.value;
     }
     return result;
   }
@@ -85,10 +85,10 @@ class JsonRpcResponse {
 
   Map<String, dynamic> toJson() {
     if (isError()) {
-      return {'jsonrpc': jsonrpc, 'id': id, 'error': error};
+      return {'jsonrpc': jsonrpc, 'id': id, 'error': error.value};
     }
 
-    return {'jsonrpc': jsonrpc, 'id': id, 'result': result};
+    return {'jsonrpc': jsonrpc, 'id': id, 'result': result.value};
   }
 
   JsonRpcResponse.fromJson(Map<String, dynamic> json)
