@@ -76,10 +76,17 @@ class JsonRpcResponse {
   }
 
   bool isMessage() {
+    if (result == null) {
+      return false;
+    }
+
     return result.isPresent;
   }
 
   bool isError() {
+    if (error == null) {
+      return false;
+    }
     return error.isPresent;
   }
 
