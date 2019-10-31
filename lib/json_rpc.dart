@@ -43,7 +43,7 @@ class JsonRpcRequest {
         id = json['id'],
         method = json['method'] {
     if (json.containsKey('params')) {
-      params = json['params'];
+      params = Optional<dynamic>.of(json['params']);
     }
   }
 }
