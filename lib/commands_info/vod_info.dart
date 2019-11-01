@@ -14,6 +14,25 @@ class VodInfo extends StreamBaseInfo {
   String displayName() {
     return vod.display_name;
   }
+  
+  Widget getIcon(){
+    return vod.preview_icon ==
+                "https://fastocloud.com/static/images/unknown_preview.png"
+            ? ClipRect(
+                child: Icon(
+                  Icons.tv,
+                  size: 40,
+                  color: Colors.grey,
+                ),
+              )
+            : ClipRect(
+                child: Image.network(
+                  vod.preview_icon,
+                  height: 40,
+                  width: 40,
+                ),
+              );
+  }
 
   factory VodInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
