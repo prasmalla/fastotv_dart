@@ -14,6 +14,10 @@ class ChannelInfo extends StreamBaseInfo {
   String primaryLink() {
     return epg.urls[0];
   }
+  
+  String getIcon(){
+    return epg.icon;
+  }
 
   factory ChannelInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
