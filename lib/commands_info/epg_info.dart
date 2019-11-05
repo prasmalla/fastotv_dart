@@ -7,7 +7,7 @@ class EpgInfo {
   final List<String> urls;
   final String display_name;
   final String icon;
-  List<ProgrammeInfo> programs = List<ProgrammeInfo>();
+  List<ProgrammeInfo> programs = [];
 
   EpgInfo(this.id, this.urls, this.display_name, this.icon, this.programs);
 
