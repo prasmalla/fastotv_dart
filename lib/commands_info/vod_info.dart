@@ -18,6 +18,26 @@ class VodInfo extends StreamBaseInfo {
   String getIcon(){
     return vod.preview_icon;
   }
+  
+  double getUserScore(){
+    return vod.user_score;
+  }
+
+  int getDuration(){
+    return vod.duration;
+  }
+
+  int getDate(){
+    return vod.prime_date;
+  }
+
+  String getTrailerUrl(){
+    return vod.trailer_url;
+  }
+
+  String getCountry(){
+    retrun vod.country;
+  }
 
   factory VodInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
