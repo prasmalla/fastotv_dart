@@ -36,7 +36,7 @@ class VodInfo extends StreamBaseInfo {
   }
 
   String getCountry(){
-    retrun vod.country;
+    return vod.country;
   }
 
   factory VodInfo.fromJson(Map<String, dynamic> json) {
