@@ -14,8 +14,8 @@ class ChannelInfo extends StreamBaseInfo {
   String primaryLink() {
     return epg.urls[0];
   }
-  
-  String getIcon(){
+
+  String getIcon() {
     return epg.icon;
   }
 

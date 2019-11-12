@@ -14,28 +14,28 @@ class VodInfo extends StreamBaseInfo {
   String displayName() {
     return vod.display_name;
   }
-  
-  String getIcon(){
+
+  String getIcon() {
     return vod.preview_icon;
   }
-  
-  double getUserScore(){
+
+  double getUserScore() {
     return vod.user_score;
   }
 
-  int getDuration(){
+  int getDuration() {
     return vod.duration;
   }
 
-  int getDate(){
+  int getDate() {
     return vod.prime_date;
   }
 
-  String getTrailerUrl(){
+  String getTrailerUrl() {
     return vod.trailer_url;
   }
 
-  String getCountry(){
+  String getCountry() {
     return vod.country;
   }
 

@@ -112,7 +112,7 @@ class Client {
     final now = new DateTime.now();
     final utc = now.toUtc();
     var request =
-        pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
+    pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
     return _sendRequest(request);
   }
 
