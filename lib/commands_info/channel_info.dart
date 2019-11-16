@@ -4,8 +4,8 @@ import 'package:fastotv_dart/commands_info/stream_base_info.dart';
 class ChannelInfo extends StreamBaseInfo {
   final EpgInfo epg;
 
-  ChannelInfo(id, type, group, this.epg, video, audio)
-      : super(id, type, group, video, audio) {}
+  ChannelInfo(id, group, this.epg, video, audio)
+      : super(id, group, video, audio) {}
 
   String displayName() {
     return epg.display_name;
@@ -22,8 +22,7 @@ class ChannelInfo extends StreamBaseInfo {
   factory ChannelInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
     final epg = EpgInfo.fromJson(json['epg']);
-    return ChannelInfo(
-        base.id, base.type, base.group, epg, base.video, base.audio);
+    return ChannelInfo(base.id, base.group, epg, base.video, base.audio);
   }
 
   Map<String, dynamic> toJson() {
