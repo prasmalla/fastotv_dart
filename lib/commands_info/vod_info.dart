@@ -2,6 +2,8 @@ import 'package:fastotv_dart/commands_info/movie_info.dart';
 import 'package:fastotv_dart/commands_info/stream_base_info.dart';
 
 class VodInfo extends StreamBaseInfo {
+  static const VOD_FIELD = 'vod';
+
   final MovieInfo vod;
 
   VodInfo(id, group, this.vod, video, audio) : super(id, group, video, audio) {}
@@ -40,13 +42,13 @@ class VodInfo extends StreamBaseInfo {
 
   factory VodInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
-    final vod = MovieInfo.fromJson(json['vod']);
+    final vod = MovieInfo.fromJson(json[VOD_FIELD]);
     return VodInfo(base.id, base.group, vod, base.video, base.audio);
   }
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> base = super.toJson();
-    base['vod'] = vod.toJson();
+    base[VOD_FIELD] = vod.toJson();
     return base;
   }
 }

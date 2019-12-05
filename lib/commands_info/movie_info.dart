@@ -8,6 +8,17 @@ MovieType Type2Enum(int number) {
 }
 
 class MovieInfo {
+  static const URLS_FIELD = 'urls';
+  static const DESCRIPTION_FIELD = 'description';
+  static const DISPLAY_NAME_FIELD = 'display_name';
+  static const PREVIEW_ICON_FIELD = 'preview_icon';
+  static const TRAILER_URL_FIELD = 'trailer_url';
+  static const USER_SCORE_FIELD = 'user_score';
+  static const PRIME_DATE_FIELD = 'prime_date';
+  static const COUNTRY_FIELD = 'country';
+  static const DURATION_FIELD = 'duration';
+  static const TYPE_FIELD = 'type';
+
   final List<String> urls;
   final String description;
   final String display_name;
@@ -32,30 +43,30 @@ class MovieInfo {
       this.type);
 
   factory MovieInfo.fromJson(Map<String, dynamic> json) {
-    final urls = json['urls'].cast<String>();
-    final description = json['description'];
-    final display_name = json['display_name'];
-    final preview_icon = json['preview_icon'];
-    final trailer_url = json['trailer_url'];
-    final user_score = json['user_score'];
-    final prime_date = json['prime_date'];
-    final country = json['country'];
-    final duration = json['duration'];
-    final type = Type2Enum(json['type']);
+    final urls = json[URLS_FIELD].cast<String>();
+    final description = json[DESCRIPTION_FIELD];
+    final display_name = json[DISPLAY_NAME_FIELD];
+    final preview_icon = json[PREVIEW_ICON_FIELD];
+    final trailer_url = json[TRAILER_URL_FIELD];
+    final user_score = json[USER_SCORE_FIELD];
+    final prime_date = json[PRIME_DATE_FIELD];
+    final country = json[COUNTRY_FIELD];
+    final duration = json[DURATION_FIELD];
+    final type = Type2Enum(json[TYPE_FIELD]);
     return MovieInfo(urls, description, display_name, preview_icon, trailer_url,
         user_score, prime_date, country, duration, type);
   }
 
   Map<String, dynamic> toJson() => {
-        'urls': urls,
-        'description': description,
-        'display_name': display_name,
-        'preview_icon': preview_icon,
-        'trailer_url': trailer_url,
-        'user_score': user_score,
-        'prime_date': prime_date,
-        'country': country,
-        'duration': duration,
-        'type': type
+        URLS_FIELD: urls,
+        DESCRIPTION_FIELD: description,
+        DISPLAY_NAME_FIELD: display_name,
+        PREVIEW_ICON_FIELD: preview_icon,
+        TRAILER_URL_FIELD: trailer_url,
+        USER_SCORE_FIELD: user_score,
+        PRIME_DATE_FIELD: prime_date,
+        COUNTRY_FIELD: country,
+        DURATION_FIELD: duration,
+        TYPE_FIELD: type
       };
 }
