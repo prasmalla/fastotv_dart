@@ -6,7 +6,7 @@ class CatchupInfo extends ChannelInfo {
 
   factory CatchupInfo.fromJson(Map<String, dynamic> json) {
     final base = ChannelInfo.fromJson(json);
-    return CatchupInfo(base.id, base.group, epg, base.video, base.audio);
+    return CatchupInfo(base.id, base.group, base.epg, base.video, base.audio);
   }
 
   Map<String, dynamic> toJson() {
