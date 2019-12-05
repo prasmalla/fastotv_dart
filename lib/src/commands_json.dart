@@ -26,6 +26,10 @@ JsonRpcRequest getRuntimeChannelInfoRequest(String id, dynamic params) {
       id: id, method: CLIENT_GET_RUNTIME_CHANNEL_INFO, params: params);
 }
 
+JsonRpcRequest catchupRequest(String id, dynamic params) {
+  return JsonRpcRequest(id: id, method: CLIENT_REQUEST_CATCHUP, params: params);
+}
+
 // responses
 JsonRpcResponse pongResponse(String id, dynamic result) {
   return JsonRpcResponse(id: id, result: result);

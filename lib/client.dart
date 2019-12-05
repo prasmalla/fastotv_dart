@@ -9,6 +9,7 @@ import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
 import 'package:fastotv_dart/commands_info/client_info.dart';
 import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
+import 'package:fastotv_dart/commands_info/catchup_generate_info.dart';
 import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/src/commands_json.dart';
@@ -97,6 +98,12 @@ class Client {
     return _sendRequest(request);
   }
 
+  void requestCatchup(String sid, int start, int stop) {
+    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, start, stop);
+    var request = catchupRequest(generateID(), cat);
+    return _sendRequest(request);
+  }
+
   void requestChannels() {
     var request = getChannelsRequest(generateID());
     return _sendRequest(request);
@@ -112,7 +119,7 @@ class Client {
     final now = new DateTime.now();
     final utc = now.toUtc();
     var request =
-    pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
+        pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
     return _sendRequest(request);
   }
 

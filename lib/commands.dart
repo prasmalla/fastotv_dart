@@ -4,6 +4,7 @@ const String CLIENT_PING = 'client_ping';
 const String CLIENT_GET_SERVER_INFO = 'get_server_info';
 const String CLIENT_GET_CHANNELS = 'get_channels';
 const String CLIENT_GET_RUNTIME_CHANNEL_INFO = 'get_runtime_channel_info';
+const String CLIENT_REQUEST_CATCHUP = 'request_catchup';
 
 const String SERVER_PING = 'server_ping';
 const String SERVER_GET_CLIENT_INFO = 'get_client_info';
