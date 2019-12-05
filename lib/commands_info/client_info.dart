@@ -51,7 +51,7 @@ class Project {
   }
 
   Map<String, dynamic> toJson() {
-    return {NAME_FIELD: name, VERSION_FILED: version}
+    return {NAME_FIELD: name, VERSION_FILED: version};
   }
 }
 
