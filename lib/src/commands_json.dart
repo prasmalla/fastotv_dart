@@ -30,6 +30,10 @@ JsonRpcRequest catchupRequest(String id, dynamic params) {
   return JsonRpcRequest(id: id, method: CLIENT_REQUEST_CATCHUP, params: params);
 }
 
+JsonRpcRequest setFavoriteRequest(String id, bool param) {
+  return JsonRpcRequest(id: id, method: CLIENT_SET_FAVORITE, params: param);
+}
+
 // responses
 JsonRpcResponse pongResponse(String id, dynamic result) {
   return JsonRpcResponse(id: id, result: result);

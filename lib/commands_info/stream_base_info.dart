@@ -4,14 +4,14 @@ class StreamBaseInfo {
   static const IARC_FIELD = 'iarc';
   static const VIDEO_FIELD = 'video';
   static const AUDIO_FIELD = 'audio';
-  static const FAVORITE_FIELD =  'favorite';
+  static const FAVORITE_FIELD = 'favorite';
 
   final String id;
   final String group;
   final int iarc;
   final bool video;
   final bool audio;
-  final bool favorite;
+  bool favorite;
 
   StreamBaseInfo(this.id, this.group, this.iarc, this.video, this.audio, this.favorite);
 

@@ -115,6 +115,11 @@ class Client {
     return _sendRequest(request);
   }
 
+  void sendFavoriteInfo(String sid, bool value) {
+    var request = setFavoriteRequest(sid, value);
+    return _sendRequest(request);
+  }
+
   void ping() {
     final now = new DateTime.now();
     final utc = now.toUtc();
