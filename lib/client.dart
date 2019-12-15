@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
+import 'package:fastotv_dart/commands_info/favorite_info.dart';
 
 import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
@@ -115,8 +116,9 @@ class Client {
     return _sendRequest(request);
   }
 
-  void sendFavoriteInfo(String sid, bool value) {
-    var request = setFavoriteRequest(sid, value);
+  void sendFavoriteInfo(String sid, bool value, bool priv) {
+    FavoriteInfo fav = FavoriteInfo(sid, value, priv);
+    var request = setFavoriteRequest(sid, fav);
     return _sendRequest(request);
   }
 
