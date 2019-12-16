@@ -11,9 +11,9 @@ class StreamBaseInfo {
   final String id;
   final String group;
   final int iarc;
-  final bool favorite;
-  final bool recent;
-  final int interrupt_time;
+  bool favorite;
+  bool recent;
+  int interrupt_time;
   final bool video;
   final bool audio;
 
