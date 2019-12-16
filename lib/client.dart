@@ -13,6 +13,7 @@ import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
 import 'package:fastotv_dart/commands_info/catchup_generate_info.dart';
 import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/login_info.dart';
+import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
 import 'package:fastotv_dart/src/commands_json.dart';
 
 String generateHash(String data) {
@@ -119,6 +120,12 @@ class Client {
   void sendFavoriteInfo(String sid, bool value) {
     FavoriteInfo fav = FavoriteInfo(sid, value);
     var request = setFavoriteRequest(sid, fav);
+    return _sendRequest(request);
+  }
+
+  void sendInterruptInfo(String sid, int msec) {
+    InterruptStreamTimeInfo inter = InterruptStreamTimeInfo(sid, msec);
+    var request = interruptStreamTimeRequest(sid, inter);
     return _sendRequest(request);
   }
 
