@@ -25,8 +25,8 @@ class ChannelInfo extends StreamBaseInfo {
   factory ChannelInfo.fromJson(Map<String, dynamic> json) {
     final base = StreamBaseInfo.fromJson(json);
     final epg = EpgInfo.fromJson(json[EPG_FIELD]);
-    return ChannelInfo(base.id, base.group, base.favorite, base.recent,
-        base.interrupt_time, base.iarc, epg, base.video, base.audio);
+    return ChannelInfo(base.id, base.group, base.iarc, base.favorite,
+        base.recent, base.interrupt_time, epg, base.video, base.audio);
   }
 
   Map<String, dynamic> toJson() {
