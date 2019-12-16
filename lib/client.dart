@@ -116,8 +116,8 @@ class Client {
     return _sendRequest(request);
   }
 
-  void sendFavoriteInfo(String sid, bool value, bool priv) {
-    FavoriteInfo fav = FavoriteInfo(sid, value, priv);
+  void sendFavoriteInfo(String sid, bool value) {
+    FavoriteInfo fav = FavoriteInfo(sid, value);
     var request = setFavoriteRequest(sid, fav);
     return _sendRequest(request);
   }
