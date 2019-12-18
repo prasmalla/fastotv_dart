@@ -34,6 +34,10 @@ JsonRpcRequest setFavoriteRequest(String id, dynamic param) {
   return JsonRpcRequest(id: id, method: CLIENT_SET_FAVORITE, params: param);
 }
 
+JsonRpcRequest addRecentRequest(String id, dynamic param) {
+  return JsonRpcRequest(id: id, method: CLIENT_SET_RECENT, params: param);
+}
+
 JsonRpcRequest interruptStreamTimeRequest(String id, dynamic param) {
   return JsonRpcRequest(
       id: id, method: CLIENT_INTERRUPT_STREAM_TIME, params: param);

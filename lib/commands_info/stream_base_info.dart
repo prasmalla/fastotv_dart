@@ -12,7 +12,7 @@ class StreamBaseInfo {
   final String group;
   final int iarc;
   bool favorite;
-  bool recent;
+  int recent;
   int interrupt_time;
   final bool video;
   final bool audio;

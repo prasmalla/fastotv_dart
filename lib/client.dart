@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
-import 'package:fastotv_dart/commands_info/favorite_info.dart';
 
 import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
@@ -14,6 +13,8 @@ import 'package:fastotv_dart/commands_info/catchup_generate_info.dart';
 import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
+import 'package:fastotv_dart/commands_info/recent_info.dart';
+import 'package:fastotv_dart/commands_info/favorite_info.dart';
 import 'package:fastotv_dart/src/commands_json.dart';
 
 String generateHash(String data) {
@@ -120,6 +121,12 @@ class Client {
   void sendFavoriteInfo(String sid, bool value) {
     FavoriteInfo fav = FavoriteInfo(sid, value);
     var request = setFavoriteRequest(sid, fav);
+    return _sendRequest(request);
+  }
+
+  void sendRecentInfo(String sid, int value) {
+    RecentInfo recent = RecentInfo(sid, value);
+    var request = addRecentRequest(sid, recent);
     return _sendRequest(request);
   }
 

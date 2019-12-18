@@ -7,6 +7,7 @@ const String CLIENT_GET_RUNTIME_CHANNEL_INFO = 'get_runtime_channel_info';
 const String CLIENT_REQUEST_CATCHUP = 'request_catchup';
 const String CLIENT_SET_FAVORITE = 'set_favorite';
 const String CLIENT_INTERRUPT_STREAM_TIME = 'interrupt_time';
+const String CLIENT_SET_RECENT = 'set_recent';
 
 const String SERVER_PING = 'server_ping';
 const String SERVER_GET_CLIENT_INFO = 'get_client_info';
