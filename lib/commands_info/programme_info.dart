@@ -1,3 +1,10 @@
+String _twoDigits(int n) {
+  if (n >= 10) {
+    return "$n";
+  }
+  return "0$n";
+}
+
 class ProgrammeInfo {
   static const CHANNEL_FIELD = 'channel';
   static const START_FIELD = 'start';
@@ -24,5 +31,35 @@ class ProgrammeInfo {
       STOP_FIELD: stop,
       TITLE_FIELD: title
     };
+  }
+
+  String getStart() {
+    final startTime = Duration(milliseconds: this.start);
+    final diff = startTime - Duration(days: startTime.inDays);
+
+    final hours =
+        (diff + Duration(minutes: DateTime.now().timeZoneOffset.inMinutes))
+            .inHours;
+    final minutes = (diff - Duration(hours: diff.inHours)).inMinutes;
+    return _twoDigits(hours) + ':' + _twoDigits(minutes);
+  }
+
+  String getEnd() {
+    final stopTime = Duration(milliseconds: this.stop);
+    final diff = stopTime - Duration(days: stopTime.inDays);
+
+    final hours =
+        (diff + Duration(minutes: DateTime.now().timeZoneOffset.inMinutes))
+            .inHours;
+    final minutes = (diff - Duration(hours: diff.inHours)).inMinutes;
+    return _twoDigits(hours) + ':' + _twoDigits(minutes);
+  }
+
+  String getDuration() {
+    final startTime = Duration(milliseconds: this.start);
+    final stopTime = Duration(milliseconds: this.stop);
+    final diff = stopTime - startTime;
+    final twoDigitMinutes = _twoDigits(diff.inMinutes.remainder(60));
+    return '${_twoDigits(diff.inHours)}:$twoDigitMinutes';
   }
 }
