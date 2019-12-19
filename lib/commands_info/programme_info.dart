@@ -33,24 +33,20 @@ class ProgrammeInfo {
     };
   }
 
-  String getStart() {
+  String getStart(Duration timeZoneOffset) {
     final startTime = Duration(milliseconds: this.start);
     final diff = startTime - Duration(days: startTime.inDays);
 
-    final hours =
-        (diff + Duration(minutes: DateTime.now().timeZoneOffset.inMinutes))
-            .inHours;
+    final hours = (diff + Duration(minutes: timeZoneOffset.inMinutes)).inHours;
     final minutes = (diff - Duration(hours: diff.inHours)).inMinutes;
     return _twoDigits(hours) + ':' + _twoDigits(minutes);
   }
 
-  String getEnd() {
+  String getEnd(Duration timeZoneOffset) {
     final stopTime = Duration(milliseconds: this.stop);
     final diff = stopTime - Duration(days: stopTime.inDays);
 
-    final hours =
-        (diff + Duration(minutes: DateTime.now().timeZoneOffset.inMinutes))
-            .inHours;
+    final hours = (diff + Duration(minutes: timeZoneOffset.inMinutes)).inHours;
     final minutes = (diff - Duration(hours: diff.inHours)).inMinutes;
     return _twoDigits(hours) + ':' + _twoDigits(minutes);
   }
