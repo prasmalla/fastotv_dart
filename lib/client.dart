@@ -40,7 +40,7 @@ class Client {
   IClientObserver _observer;
   int _id = 0;
   final Map<String, JsonRpcRequest> _requests = {};
-  List<int> _recv_buffer = [];
+  List<int> _recvBuffer = [];
 
   Client();
 
@@ -173,7 +173,7 @@ class Client {
     _socket = null;
   }
 
-  // private
+  // private:
   void _sendRequest(JsonRpcRequest request) {
     if (_socket == null) {
       return;
@@ -221,12 +221,12 @@ class Client {
     }
   }
 
-  void _processMessage(List<int> payload) {
+  bool _processMessage(List<int> payload) {
     List<int> decoded = gzip.decode(payload);
     String req_or_resp_data = String.fromCharCodes(decoded);
     Map<String, dynamic> request_or_response = json.decode(req_or_resp_data);
     if (request_or_response.isEmpty) {
-      return;
+      return false;
     }
 
     if (request_or_response.containsKey('method')) {
@@ -234,18 +234,18 @@ class Client {
       if (_observer != null) {
         _observer.processRequest(req);
       }
-      return;
+      return true;
     }
 
     // response
     JsonRpcResponse resp = JsonRpcResponse.fromJson(request_or_response);
     if (!resp.isValid()) {
-      return;
+      return true;
     }
 
     JsonRpcRequest req = _requests.remove(resp.id);
     if (req == null || !req.isValid()) {
-      return;
+      return true;
     }
 
     if (req.method == CLIENT_LOGIN) {
@@ -259,25 +259,32 @@ class Client {
     if (_observer != null) {
       _observer.processResponse(req, resp);
     }
+    return true;
   }
 
   void _socketDataReceived(List<int> data) {
-    _recv_buffer += data;
-    if (_recv_buffer.length < 4) {
+    _recvBuffer += data;
+    _handleData();
+  }
+
+  void _handleData() {
+    if (_recvBuffer.length < 4) {
       return;
     }
 
-    final Uint8List data_size = Uint8List.fromList(_recv_buffer.sublist(0, 4));
+    final Uint8List data_size = Uint8List.fromList(_recvBuffer.sublist(0, 4));
     final byte_data = ByteData.view(data_size.buffer);
     int size = byte_data.getUint32(0, Endian.big);
 
     int message_size = size + 4;
-    if (_recv_buffer.length < message_size) {
+    if (_recvBuffer.length < message_size) {
       return;
     }
 
-    final payload = _recv_buffer.sublist(4, size);
-    _processMessage(payload);
-    _recv_buffer = _recv_buffer.sublist(message_size);
+    final payload = _recvBuffer.sublist(4, size);
+    if (_processMessage(payload)) {
+      _recvBuffer = _recvBuffer.sublist(message_size);
+      _handleData();
+    }
   }
 }
