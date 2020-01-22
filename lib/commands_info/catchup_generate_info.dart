@@ -1,3 +1,5 @@
+import 'package:fastotv_dart/commands_info/catchup_info.dart';
+
 class CatchupGenerateInfo {
   static const ID_FIELD = 'id';
   static const START_FIELD = 'start';
@@ -21,15 +23,15 @@ class CatchupGenerateInfo {
 }
 
 class CatchupQueueInfo {
-  static const ID_FIELD = 'cid';
-  final String id;
+  static const CATCHUP_FIELD = 'catchup';
+  final CatchupInfo catchup;
 
-  CatchupQueueInfo(this.id);
+  CatchupQueueInfo(this.catchup);
 
   factory CatchupQueueInfo.fromJson(Map<String, dynamic> json) {
-    final id = json[ID_FIELD];
-    return CatchupQueueInfo(id);
+    final catchup = CatchupInfo.fromJson(json[CATCHUP_FIELD]);
+    return CatchupQueueInfo(catchup);
   }
 
-  Map<String, dynamic> toJson() => {ID_FIELD: id};
+  Map<String, dynamic> toJson() => {CATCHUP_FIELD: catchup.toJson()};
 }
