@@ -8,7 +8,7 @@ class StreamBaseInfo {
   static const VIDEO_FIELD = 'video';
   static const AUDIO_FIELD = 'audio';
 
-  final String id;
+  String id;
   String group;
   int iarc;
   bool favorite;
