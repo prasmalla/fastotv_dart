@@ -9,8 +9,8 @@ class StreamBaseInfo {
   static const AUDIO_FIELD = 'audio';
 
   final String id;
-  final String group;
-  final int iarc;
+  String group;
+  int iarc;
   bool favorite;
   int recent;
   int interrupt_time;
