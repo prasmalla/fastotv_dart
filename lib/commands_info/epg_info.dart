@@ -9,10 +9,10 @@ class EpgInfo {
   static const ICON_FIELD = 'icon';
   static const PROGRAMS_FIELD = 'programs';
 
-  final String id;
-  final List<String> urls;
-  final String display_name;
-  final String icon;
+  String id;
+  List<String> urls;
+  String display_name;
+  String icon;
   List<ProgrammeInfo> programs = [];
 
   EpgInfo(this.id, this.urls, this.display_name, this.icon, this.programs);

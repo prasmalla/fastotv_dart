@@ -19,16 +19,16 @@ class MovieInfo {
   static const DURATION_FIELD = 'duration';
   static const TYPE_FIELD = 'type';
 
-  final List<String> urls;
-  final String description;
-  final String display_name;
-  final String preview_icon;
-  final String trailer_url;
-  final double user_score;
-  final int prime_date;
-  final String country;
-  final int duration;
-  final MovieType type;
+  List<String> urls;
+  String description;
+  String display_name;
+  String preview_icon;
+  String trailer_url;
+  double user_score;
+  int prime_date;
+  String country;
+  int duration;
+  MovieType type;
 
   MovieInfo(
       this.urls,
