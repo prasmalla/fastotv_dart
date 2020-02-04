@@ -21,8 +21,7 @@ class CatchupGenerateInfo {
     return CatchupGenerateInfo(id, start, stop, record);
   }
 
-  Map<String, dynamic> toJson() =>
-      {ID_FIELD: id, START_FIELD: start, STOP_FIELD: stop};
+  Map<String, dynamic> toJson() => {ID_FIELD: id, START_FIELD: start, STOP_FIELD: stop, RECORD_FIELD: record};
 }
 
 class CatchupQueueInfo {
