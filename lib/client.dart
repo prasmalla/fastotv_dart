@@ -101,8 +101,8 @@ class Client {
     return _sendRequest(request);
   }
 
-  void requestCatchup(String sid, int start, int stop) {
-    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, start, stop);
+  void requestCatchup(String sid, int start, int stop, bool record) {
+    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, start, stop, record);
     var request = catchupRequest(generateID(), cat);
     return _sendRequest(request);
   }

@@ -4,18 +4,21 @@ class CatchupGenerateInfo {
   static const ID_FIELD = 'id';
   static const START_FIELD = 'start';
   static const STOP_FIELD = 'stop';
+  static const RECORD_FIELD = 'record';
 
   final String id;
   final int start;
   final int stop;
+  final bool record;
 
-  CatchupGenerateInfo(this.id, this.start, this.stop);
+  CatchupGenerateInfo(this.id, this.start, this.stop, this.record);
 
   factory CatchupGenerateInfo.fromJson(Map<String, dynamic> json) {
     final id = json[ID_FIELD];
     final start = json[START_FIELD];
     final stop = json[STOP_FIELD];
-    return CatchupGenerateInfo(id, start, stop);
+    final record = json[RECORD_FIELD];
+    return CatchupGenerateInfo(id, start, stop, record);
   }
 
   Map<String, dynamic> toJson() =>
