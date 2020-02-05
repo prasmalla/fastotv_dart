@@ -10,6 +10,7 @@ import 'package:fastotv_dart/commands_info/auth_info.dart';
 import 'package:fastotv_dart/commands_info/client_info.dart';
 import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
 import 'package:fastotv_dart/commands_info/catchup_generate_info.dart';
+import 'package:fastotv_dart/commands_info/catchup_undo_info.dart';
 import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
@@ -64,10 +65,7 @@ class Client {
 
     try {
       _socket = await Socket.connect(server, port);
-      _socket.listen(_socketDataReceived,
-          onError: _socketErrorReceived,
-          onDone: _socketDone,
-          cancelOnError: false);
+      _socket.listen(_socketDataReceived, onError: _socketErrorReceived, onDone: _socketDone, cancelOnError: false);
       if (_observer != null) {
         _observer.onConnectionStateChanged(ClientConnectionState.CONNECTED);
       }
@@ -101,9 +99,15 @@ class Client {
     return _sendRequest(request);
   }
 
-  void requestCatchup(String sid, int start, int stop, bool record) {
-    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, start, stop, record);
+  void requestCatchup(String sid, int start, int stop) {
+    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, start, stop);
     var request = catchupRequest(generateID(), cat);
+    return _sendRequest(request);
+  }
+
+  void requestUndoCatchup(String sid) {
+    CatchupUndoInfo cat = CatchupUndoInfo(sid);
+    var request = catchupUndoRequest(generateID(), cat);
     return _sendRequest(request);
   }
 
@@ -139,8 +143,7 @@ class Client {
   void ping() {
     final now = new DateTime.now();
     final utc = now.toUtc();
-    var request =
-        pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
+    var request = pingRequest(generateID(), {'timestamp': utc.millisecondsSinceEpoch});
     return _sendRequest(request);
   }
 
