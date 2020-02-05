@@ -31,7 +31,8 @@ class StreamBaseInfo {
     final interrupt_time = json[INTERRUPT_TIME_FIELD];
     final video = json[VIDEO_FIELD];
     final audio = json[AUDIO_FIELD];
-    final parts = json[PARTS_FIELD];
+    final parts = json[PARTS_FIELD].cast<String>();
+
     return StreamBaseInfo(id, group, iarc, favorite, recent, interrupt_time, video, audio, parts);
   }
 
