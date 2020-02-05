@@ -7,6 +7,7 @@ class StreamBaseInfo {
   static const INTERRUPT_TIME_FIELD = 'interrupt_time';
   static const VIDEO_FIELD = 'video';
   static const AUDIO_FIELD = 'audio';
+  static const PARTS_FIELD = 'parts';
 
   String id;
   String group;
@@ -16,9 +17,10 @@ class StreamBaseInfo {
   int interrupt_time;
   final bool video;
   final bool audio;
+  final List<String> parts;
 
-  StreamBaseInfo(this.id, this.group, this.iarc, this.favorite, this.recent,
-      this.interrupt_time, this.video, this.audio);
+  StreamBaseInfo(this.id, this.group, this.iarc, this.favorite, this.recent, this.interrupt_time, this.video,
+      this.audio, this.parts);
 
   factory StreamBaseInfo.fromJson(Map<String, dynamic> json) {
     final id = json[ID_FIELD];
@@ -29,8 +31,8 @@ class StreamBaseInfo {
     final interrupt_time = json[INTERRUPT_TIME_FIELD];
     final video = json[VIDEO_FIELD];
     final audio = json[AUDIO_FIELD];
-    return StreamBaseInfo(
-        id, group, iarc, favorite, recent, interrupt_time, video, audio);
+    final parts = json[PARTS_FIELD];
+    return StreamBaseInfo(id, group, iarc, favorite, recent, interrupt_time, video, audio, parts);
   }
 
   Map<String, dynamic> toJson() {
@@ -41,7 +43,8 @@ class StreamBaseInfo {
       RECENT_FIELD: recent,
       INTERRUPT_TIME_FIELD: interrupt_time,
       VIDEO_FIELD: video,
-      AUDIO_FIELD: audio
+      AUDIO_FIELD: audio,
+      PARTS_FIELD: parts
     };
   }
 }

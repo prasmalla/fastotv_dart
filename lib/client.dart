@@ -99,8 +99,8 @@ class Client {
     return _sendRequest(request);
   }
 
-  void requestCatchup(String sid, int start, int stop) {
-    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, start, stop);
+  void requestCatchup(String sid, String title, int start, int stop) {
+    CatchupGenerateInfo cat = CatchupGenerateInfo(sid, title, start, stop);
     var request = catchupRequest(generateID(), cat);
     return _sendRequest(request);
   }
