@@ -12,8 +12,7 @@ class OperationSystemInfo {
   final int ram_total;
   final int ram_free;
 
-  OperationSystemInfo(this.name, this.version, this.arch, this.ram_total,
-      this.ram_free);
+  OperationSystemInfo(this.name, this.version, this.arch, this.ram_total, this.ram_free);
 
   factory OperationSystemInfo.fromJson(Map<String, dynamic> json) {
     final name = json[NAME_FIELD];

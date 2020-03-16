@@ -6,6 +6,8 @@ import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
 
 import 'package:fastotv_dart/json_rpc.dart';
+import 'package:fastotv_dart/src/commands_json.dart';
+
 import 'package:fastotv_dart/commands_info/auth_info.dart';
 import 'package:fastotv_dart/commands_info/client_info.dart';
 import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
@@ -16,7 +18,6 @@ import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
 import 'package:fastotv_dart/commands_info/recent_info.dart';
 import 'package:fastotv_dart/commands_info/favorite_info.dart';
-import 'package:fastotv_dart/src/commands_json.dart';
 
 String generateHash(String data) {
   return md5.convert(utf8.encode(data)).toString();

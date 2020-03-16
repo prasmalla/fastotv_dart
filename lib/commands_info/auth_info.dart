@@ -25,14 +25,12 @@ class ServerAuthInfo extends AuthInfo {
 
   final int exp_date;
 
-  ServerAuthInfo(login, password, device_id, this.exp_date)
-      : super(login, password, device_id);
+  ServerAuthInfo(login, password, device_id, this.exp_date) : super(login, password, device_id);
 
   factory ServerAuthInfo.fromJson(Map<String, dynamic> json) {
     final login = AuthInfo.fromJson(json);
     final exp_date = json[EXPIRED_DATE_FIELD];
-    return ServerAuthInfo(
-        login.login, login.password, login.device_id, exp_date);
+    return ServerAuthInfo(login.login, login.password, login.device_id, exp_date);
   }
 
   Map<String, dynamic> toJson() {

@@ -22,8 +22,7 @@ JsonRpcRequest getChannelsRequest(String id) {
 }
 
 JsonRpcRequest getRuntimeChannelInfoRequest(String id, dynamic params) {
-  return JsonRpcRequest(
-      id: id, method: CLIENT_GET_RUNTIME_CHANNEL_INFO, params: params);
+  return JsonRpcRequest(id: id, method: CLIENT_GET_RUNTIME_CHANNEL_INFO, params: params);
 }
 
 JsonRpcRequest catchupRequest(String id, dynamic params) {
@@ -43,8 +42,7 @@ JsonRpcRequest addRecentRequest(String id, dynamic param) {
 }
 
 JsonRpcRequest interruptStreamTimeRequest(String id, dynamic param) {
-  return JsonRpcRequest(
-      id: id, method: CLIENT_INTERRUPT_STREAM_TIME, params: param);
+  return JsonRpcRequest(id: id, method: CLIENT_INTERRUPT_STREAM_TIME, params: param);
 }
 
 // responses

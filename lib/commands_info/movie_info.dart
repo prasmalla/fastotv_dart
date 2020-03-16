@@ -30,17 +30,8 @@ class MovieInfo {
   int duration;
   MovieType type;
 
-  MovieInfo(
-      this.urls,
-      this.description,
-      this.display_name,
-      this.preview_icon,
-      final this.trailer_url,
-      this.user_score,
-      this.prime_date,
-      this.country,
-      this.duration,
-      this.type);
+  MovieInfo(this.urls, this.description, this.display_name, this.preview_icon, final this.trailer_url, this.user_score,
+      this.prime_date, this.country, this.duration, this.type);
 
   factory MovieInfo.fromJson(Map<String, dynamic> json) {
     final urls = json[URLS_FIELD].cast<String>();
@@ -53,8 +44,8 @@ class MovieInfo {
     final country = json[COUNTRY_FIELD];
     final duration = json[DURATION_FIELD];
     final type = Type2Enum(json[TYPE_FIELD]);
-    return MovieInfo(urls, description, display_name, preview_icon, trailer_url,
-        user_score, prime_date, country, duration, type);
+    return MovieInfo(
+        urls, description, display_name, preview_icon, trailer_url, user_score, prime_date, country, duration, type);
   }
 
   Map<String, dynamic> toJson() => {

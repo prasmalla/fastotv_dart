@@ -25,12 +25,7 @@ class ProgrammeInfo {
         title = json[TITLE_FIELD];
 
   Map<String, dynamic> toJson() {
-    return {
-      CHANNEL_FIELD: channel,
-      START_FIELD: start,
-      STOP_FIELD: stop,
-      TITLE_FIELD: title
-    };
+    return {CHANNEL_FIELD: channel, START_FIELD: start, STOP_FIELD: stop, TITLE_FIELD: title};
   }
 
   String getStart(Duration timeZoneOffset) {
