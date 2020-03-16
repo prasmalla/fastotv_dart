@@ -5,8 +5,8 @@ class ChannelInfo extends StreamBaseInfo {
   static const EPG_FIELD = 'epg';
   final EpgInfo epg;
 
-  ChannelInfo(id, group, iarc, favorite, recent, interrupt_time, this.epg, video, audio, parts)
-      : super(id, group, iarc, favorite, recent, interrupt_time, video, audio, parts) {}
+  ChannelInfo(id, group, iarc, favorite, recent, interrupt_time, this.epg, video, audio, parts, view_count)
+      : super(id, group, iarc, favorite, recent, interrupt_time, video, audio, parts, view_count) {}
 
   String displayName() {
     return epg.display_name;
@@ -24,7 +24,7 @@ class ChannelInfo extends StreamBaseInfo {
     final base = StreamBaseInfo.fromJson(json);
     final epg = EpgInfo.fromJson(json[EPG_FIELD]);
     return ChannelInfo(base.id, base.group, base.iarc, base.favorite, base.recent, base.interrupt_time, epg, base.video,
-        base.audio, base.parts);
+        base.audio, base.parts, base.view_count);
   }
 
   Map<String, dynamic> toJson() {

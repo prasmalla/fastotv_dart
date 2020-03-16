@@ -6,8 +6,8 @@ class VodInfo extends StreamBaseInfo {
 
   final MovieInfo vod;
 
-  VodInfo(id, group, iarc, favorite, recent, interrupt_time, this.vod, video, audio, parts)
-      : super(id, group, iarc, favorite, recent, interrupt_time, video, audio, parts) {}
+  VodInfo(id, group, iarc, favorite, recent, interrupt_time, this.vod, video, audio, parts, view_count)
+      : super(id, group, iarc, favorite, recent, interrupt_time, video, audio, parts, view_count) {}
 
   String primaryLink() {
     return vod.urls[0];
@@ -45,7 +45,7 @@ class VodInfo extends StreamBaseInfo {
     final base = StreamBaseInfo.fromJson(json);
     final vod = MovieInfo.fromJson(json[VOD_FIELD]);
     return VodInfo(base.id, base.group, base.iarc, base.favorite, base.recent, base.interrupt_time, vod, base.video,
-        base.audio, base.parts);
+        base.audio, base.parts, base.view_count);
   }
 
   Map<String, dynamic> toJson() {
