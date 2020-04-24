@@ -1,6 +1,6 @@
 class StreamBaseInfo {
   static const ID_FIELD = 'id';
-  static const GROUP_FIELD = 'group';
+  static const GROUPS_FIELD = 'groups';
   static const IARC_FIELD = 'iarc';
   static const FAVORITE_FIELD = 'favorite';
   static const RECENT_FIELD = 'recent';
@@ -12,7 +12,7 @@ class StreamBaseInfo {
   static const VIEW_COUNT_FIELD = 'view_count';
 
   String id;
-  String group;
+  List<String> groups;
   int iarc;
   bool favorite;
   int recent;
@@ -23,12 +23,12 @@ class StreamBaseInfo {
   final bool audio;
   final List<String> parts;
 
-  StreamBaseInfo(this.id, this.group, this.iarc, this.favorite, this.recent, this.interrupt_time, this.locked,
+  StreamBaseInfo(this.id, this.groups, this.iarc, this.favorite, this.recent, this.interrupt_time, this.locked,
       this.video, this.audio, this.parts, this.view_count);
 
   factory StreamBaseInfo.fromJson(Map<String, dynamic> json) {
     final id = json[ID_FIELD];
-    final group = json[GROUP_FIELD];
+    final groups = json[GROUPS_FIELD];
     final iarc = json[IARC_FIELD];
     final favorite = json[FAVORITE_FIELD];
     final recent = json[RECENT_FIELD];
@@ -39,13 +39,13 @@ class StreamBaseInfo {
     final parts = json[PARTS_FIELD].cast<String>();
     final view_count = json[VIEW_COUNT_FIELD];
 
-    return StreamBaseInfo(id, group, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count);
+    return StreamBaseInfo(id, groups, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count);
   }
 
   Map<String, dynamic> toJson() {
     return {
       ID_FIELD: id,
-      GROUP_FIELD: group,
+      GROUPS_FIELD: groups,
       FAVORITE_FIELD: favorite,
       RECENT_FIELD: recent,
       INTERRUPT_TIME_FIELD: interrupt_time,
