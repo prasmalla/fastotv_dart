@@ -28,7 +28,7 @@ class StreamBaseInfo {
 
   factory StreamBaseInfo.fromJson(Map<String, dynamic> json) {
     final id = json[ID_FIELD];
-    final groups = json[GROUPS_FIELD];
+    final groups = json[GROUPS_FIELD].cast<String>();
     final iarc = json[IARC_FIELD];
     final favorite = json[FAVORITE_FIELD];
     final recent = json[RECENT_FIELD];
