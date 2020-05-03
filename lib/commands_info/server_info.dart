@@ -1,13 +1,16 @@
 class ServerInfo {
   static const EPG_URL_FIELD = 'epg_url';
+  static const LOCKED_STREAM_TEXT_FIELD = 'locked_stream_text';
   final String epg_url;
+  final String locked_stream_text;
 
-  ServerInfo(this.epg_url);
+  ServerInfo(this.epg_url, this.locked_stream_text);
 
   factory ServerInfo.fromJson(Map<String, dynamic> json) {
     final epg_url = json[EPG_URL_FIELD];
-    return ServerInfo(epg_url);
+    final locked_stream_text = json[LOCKED_STREAM_TEXT_FIELD];
+    return ServerInfo(epg_url, locked_stream_text);
   }
 
-  Map<String, dynamic> toJson() => {EPG_URL_FIELD: epg_url};
+  Map<String, dynamic> toJson() => {EPG_URL_FIELD: epg_url, LOCKED_STREAM_TEXT_FIELD: locked_stream_text};
 }
