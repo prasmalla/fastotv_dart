@@ -2,8 +2,8 @@ class MetaUrl {
   static const NAME_FIELD = 'name';
   static const URL_FIELD = 'url';
 
-  final String name;
-  final String url;
+  String name;
+  String url;
 
   MetaUrl(this.name, this.url);
 
