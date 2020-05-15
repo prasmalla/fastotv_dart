@@ -7,6 +7,10 @@ class MetaUrl {
 
   MetaUrl(this.name, this.url);
 
+  MetaUrl copy() {
+    return MetaUrl(name, url);
+  }
+
   factory MetaUrl.fromJson(Map<String, dynamic> json) {
     final name = json[NAME_FIELD];
     final url = json[URL_FIELD];
