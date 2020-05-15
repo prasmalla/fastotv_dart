@@ -1,3 +1,5 @@
+import 'package:fastotv_dart/commands_info/meta_url.dart';
+
 class StreamBaseInfo {
   static const ID_FIELD = 'id';
   static const GROUPS_FIELD = 'groups';
@@ -10,6 +12,7 @@ class StreamBaseInfo {
   static const AUDIO_FIELD = 'audio';
   static const PARTS_FIELD = 'parts';
   static const VIEW_COUNT_FIELD = 'view_count';
+  static const META_FIELD = 'meta';
 
   String id;
   List<String> groups;
@@ -22,9 +25,10 @@ class StreamBaseInfo {
   final bool video;
   final bool audio;
   final List<String> parts;
+  final List<MetaUrl> meta;
 
   StreamBaseInfo(this.id, this.groups, this.iarc, this.favorite, this.recent, this.interrupt_time, this.locked,
-      this.video, this.audio, this.parts, this.view_count);
+      this.video, this.audio, this.parts, this.view_count, this.meta);
 
   factory StreamBaseInfo.fromJson(Map<String, dynamic> json) {
     final id = json[ID_FIELD];
@@ -38,8 +42,10 @@ class StreamBaseInfo {
     final audio = json[AUDIO_FIELD];
     final parts = json[PARTS_FIELD].cast<String>();
     final view_count = json[VIEW_COUNT_FIELD];
+    final List<MetaUrl> meta = json[META_FIELD].cast<MetaUrl>();
 
-    return StreamBaseInfo(id, groups, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count);
+    return StreamBaseInfo(
+        id, groups, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count, meta);
   }
 
   Map<String, dynamic> toJson() {
@@ -53,7 +59,8 @@ class StreamBaseInfo {
       VIDEO_FIELD: video,
       AUDIO_FIELD: audio,
       PARTS_FIELD: parts,
-      VIEW_COUNT_FIELD: view_count
+      VIEW_COUNT_FIELD: view_count,
+      META_FIELD: meta
     };
   }
 }

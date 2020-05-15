@@ -8,15 +8,15 @@ class CatchupInfo extends ChannelInfo {
   final int stop;
 
   CatchupInfo(id, groups, iarc, favorite, recent, interrupt_time, locked, epg, video, audio, parts, this.start,
-      this.stop, view_count)
-      : super(id, groups, iarc, favorite, recent, interrupt_time, locked, epg, video, audio, parts, view_count);
+      this.stop, view_count, meta)
+      : super(id, groups, iarc, favorite, recent, interrupt_time, locked, epg, video, audio, parts, view_count, meta);
 
   factory CatchupInfo.fromJson(Map<String, dynamic> json) {
     final base = ChannelInfo.fromJson(json);
     final start = json[START_FIELD];
     final stop = json[STOP_FIELD];
     return CatchupInfo(base.id, base.groups, base.iarc, base.favorite, base.recent, base.interrupt_time, base.locked,
-        base.epg, base.video, base.audio, base.parts, start, stop, base.view_count);
+        base.epg, base.video, base.audio, base.parts, start, stop, base.view_count, base.meta);
   }
 
   Map<String, dynamic> toJson() {
