@@ -42,10 +42,12 @@ class StreamBaseInfo {
     final audio = json[AUDIO_FIELD];
     final parts = json[PARTS_FIELD].cast<String>();
     final view_count = json[VIEW_COUNT_FIELD];
-    final List<MetaUrl> meta = json[META_FIELD].cast<MetaUrl>();
+    final meta = json[META_FIELD];
+    final List<MetaUrl> resultMeta = [];
+    meta.forEach((item) => resultMeta.add(MetaUrl.fromJson(item)));
 
     return StreamBaseInfo(
-        id, groups, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count, meta);
+        id, groups, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count, resultMeta);
   }
 
   Map<String, dynamic> toJson() {
