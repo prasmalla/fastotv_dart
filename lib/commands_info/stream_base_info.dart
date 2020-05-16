@@ -44,7 +44,7 @@ class StreamBaseInfo {
     final view_count = json[VIEW_COUNT_FIELD];
     final meta = json[META_FIELD];
     final List<MetaUrl> resultMeta = [];
-    meta.forEach((item) => resultMeta.add(MetaUrl.fromJson(item)));
+    meta?.forEach((item) => resultMeta.add(MetaUrl.fromJson(item)));
 
     return StreamBaseInfo(
         id, groups, iarc, favorite, recent, interrupt_time, locked, video, audio, parts, view_count, resultMeta);
