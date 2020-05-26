@@ -204,8 +204,8 @@ class Client {
 
   void _send(List<int> data) {
     final Uint8List message = Uint8List(4);
-    final bytedata = ByteData.view(message.buffer);
-    bytedata.setUint32(0, data.length, Endian.big);
+    final byte_data = ByteData.view(message.buffer);
+    byte_data.setUint32(0, data.length);
 
     _socket.add(message);
     _socket.add(data);
@@ -278,7 +278,7 @@ class Client {
 
     final Uint8List data_size = Uint8List.fromList(_recvBuffer.sublist(0, 4));
     final byte_data = ByteData.view(data_size.buffer);
-    int size = byte_data.getUint32(0, Endian.big);
+    int size = byte_data.getUint32(0);
 
     int message_size = size + 4;
     if (_recvBuffer.length < message_size) {
