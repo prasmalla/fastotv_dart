@@ -6,6 +6,7 @@ class Serial {
   static const DESCRIPTION_FIELD = 'description';
   static const SEASON_FIELD = 'season';
   static const EPISODES_FIELD = 'episodes';
+  static const VIEW_COUNT_FIELD = 'view_count';
 
   String id;
   String name;
@@ -14,11 +15,12 @@ class Serial {
   String description;
   int season;
   List<String> episodes;
+  final int view_count;
 
-  Serial(this.id, this.name, this.icon, this.groups, this.description, this.season, this.episodes);
+  Serial(this.id, this.name, this.icon, this.groups, this.description, this.season, this.episodes, this.view_count);
 
   Serial copy() {
-    return Serial(id, name, icon, groups, description, season, episodes);
+    return Serial(id, name, icon, groups, description, season, episodes, view_count);
   }
 
   factory Serial.fromJson(Map<String, dynamic> json) {
@@ -29,7 +31,8 @@ class Serial {
     final description = json[DESCRIPTION_FIELD];
     final season = json[SEASON_FIELD];
     final List<String> episodes = json[EPISODES_FIELD].cast<String>();
-    return Serial(id, name, icon, groups, description, season, episodes);
+    final view_count = json[VIEW_COUNT_FIELD];
+    return Serial(id, name, icon, groups, description, season, episodes, view_count);
   }
 
   Map<String, dynamic> toJson() {
@@ -40,7 +43,8 @@ class Serial {
       GROUPS_FIELD: groups,
       DESCRIPTION_FIELD: description,
       SEASON_FIELD: season,
-      EPISODES_FIELD: episodes
+      EPISODES_FIELD: episodes,
+      VIEW_COUNT_FIELD: view_count
     };
   }
 }
