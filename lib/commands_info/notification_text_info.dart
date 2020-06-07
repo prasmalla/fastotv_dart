@@ -7,11 +7,11 @@ class NotificationType {
     return _value;
   }
 
-  String toString() {
+  String toHumanReadable() {
     if (_value == 0) {
-      return 'TEXT';
+      return 'Text';
     }
-    return 'HYPERLINK';
+    return 'Hyperlink';
   }
 
   factory NotificationType.fromInt(int value) {
