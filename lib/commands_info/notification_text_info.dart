@@ -34,9 +34,16 @@ class NotificationTextInfo {
 
   final String message;
   final NotificationType type;
-  final int show_time;
+  final int showTime;
 
-  NotificationTextInfo(this.message, this.type, this.show_time);
+  static const MIN_TIME = 1;
+  static const MAX_TIME = 3600;
+
+  NotificationTextInfo(this.message, this.type, this.showTime);
+
+  bool isValid() {
+    return message.isNotEmpty && showTime >= MIN_TIME && showTime <= MAX_TIME && type != null;
+  }
 
   factory NotificationTextInfo.fromJson(Map<String, dynamic> json) {
     if (json == null) {
@@ -45,11 +52,11 @@ class NotificationTextInfo {
 
     final message = json[TEXT_FIELD];
     final type = NotificationType.fromInt(json[TYPE_FIELD]);
-    final show_time = json[SHOW_TIME_FIELD];
-    return NotificationTextInfo(message, type, show_time);
+    final showTime = json[SHOW_TIME_FIELD];
+    return NotificationTextInfo(message, type, showTime);
   }
 
   Map<String, dynamic> toJson() {
-    return {TEXT_FIELD: message, TYPE_FIELD: type.toInt(), SHOW_TIME_FIELD: show_time};
+    return {TEXT_FIELD: message, TYPE_FIELD: type.toInt(), SHOW_TIME_FIELD: showTime};
   }
 }
