@@ -18,11 +18,17 @@ class ProgrammeInfo {
 
   ProgrammeInfo(this.channel, this.start, this.stop, this.title);
 
-  ProgrammeInfo.fromJson(Map<String, dynamic> json)
-      : channel = json[CHANNEL_FIELD],
-        start = json[START_FIELD],
-        stop = json[STOP_FIELD],
-        title = json[TITLE_FIELD];
+  factory ProgrammeInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final channel = json[CHANNEL_FIELD];
+    final start = json[START_FIELD];
+    final stop = json[STOP_FIELD];
+    final title = json[TITLE_FIELD];
+    return ProgrammeInfo(channel, start, stop, title);
+  }
 
   Map<String, dynamic> toJson() {
     return {CHANNEL_FIELD: channel, START_FIELD: start, STOP_FIELD: stop, TITLE_FIELD: title};

@@ -7,9 +7,15 @@ class InterruptStreamTimeInfo {
 
   InterruptStreamTimeInfo(this.id, this.time);
 
-  InterruptStreamTimeInfo.fromJson(Map<String, dynamic> json)
-      : id = json[ID_FIELD],
-        time = json[TIME_FIELD];
+  factory InterruptStreamTimeInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final id = json[ID_FIELD];
+    final time = json[TIME_FIELD];
+    return InterruptStreamTimeInfo(id, time);
+  }
 
   Map<String, dynamic> toJson() {
     return {ID_FIELD: id, TIME_FIELD: time};

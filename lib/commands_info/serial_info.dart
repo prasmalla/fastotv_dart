@@ -24,6 +24,10 @@ class Serial {
   }
 
   factory Serial.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final id = json[ID_FIELD];
     final name = json[NAME_FIELD];
     final icon = json[ICON_FIELD];

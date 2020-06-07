@@ -12,6 +12,10 @@ class CatchupInfo extends ChannelInfo {
       : super(id, groups, iarc, favorite, recent, interrupt_time, locked, epg, video, audio, parts, view_count, meta);
 
   factory CatchupInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final base = ChannelInfo.fromJson(json);
     final start = json[START_FIELD];
     final stop = json[STOP_FIELD];

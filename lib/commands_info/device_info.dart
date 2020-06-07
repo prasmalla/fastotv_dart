@@ -8,6 +8,10 @@ class DeviceInfo {
   DeviceInfo(this.id, this.name);
 
   factory DeviceInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final id = json[ID_FIELD];
     final name = json[NAME_FIELD];
     return DeviceInfo(id, name);

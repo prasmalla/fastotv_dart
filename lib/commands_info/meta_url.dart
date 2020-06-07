@@ -12,6 +12,10 @@ class MetaUrl {
   }
 
   factory MetaUrl.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final name = json[NAME_FIELD];
     final url = json[URL_FIELD];
     return MetaUrl(name, url);

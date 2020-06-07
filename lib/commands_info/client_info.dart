@@ -15,6 +15,10 @@ class OperationSystemInfo {
   OperationSystemInfo(this.name, this.version, this.arch, this.ram_total, this.ram_free);
 
   factory OperationSystemInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final name = json[NAME_FIELD];
     final version = json[VERSION_FILED];
     final arch = json[ARCH_FIELD];

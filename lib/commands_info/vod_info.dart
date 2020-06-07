@@ -42,6 +42,10 @@ class VodInfo extends StreamBaseInfo {
   }
 
   factory VodInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final base = StreamBaseInfo.fromJson(json);
     final vod = MovieInfo.fromJson(json[VOD_FIELD]);
     return VodInfo(base.id, base.groups, base.iarc, base.favorite, base.recent, base.interrupt_time, base.locked, vod,

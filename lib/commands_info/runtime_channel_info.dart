@@ -19,6 +19,10 @@ class RuntimeChannelInfo extends RuntimeChannelLiteInfo {
   RuntimeChannelInfo(id, this.watchers) : super(id);
 
   factory RuntimeChannelInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final run = RuntimeChannelLiteInfo.fromJson(json);
     final watchers = json[WATCHERS_FIELD];
     return RuntimeChannelInfo(run.id, watchers);

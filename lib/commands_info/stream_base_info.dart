@@ -31,6 +31,10 @@ class StreamBaseInfo {
       this.video, this.audio, this.parts, this.view_count, this.meta);
 
   factory StreamBaseInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final id = json[ID_FIELD];
     final groups = json[GROUPS_FIELD].cast<String>();
     final iarc = json[IARC_FIELD];

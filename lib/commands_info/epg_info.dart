@@ -1,5 +1,4 @@
 import 'package:fastotv_dart/commands_info/programme_info.dart';
-
 import 'package:quiver/core.dart';
 
 class EpgInfo {
@@ -17,13 +16,20 @@ class EpgInfo {
 
   EpgInfo(this.id, this.urls, this.display_name, this.icon, this.programs);
 
-  EpgInfo.fromJson(Map<String, dynamic> json)
-      : id = json[ID_FIELD],
-        urls = json[URLS_FIELD].cast<String>(),
-        display_name = json[DISPLAY_NAME_FIELD],
-        icon = json[ICON_FIELD] {
-    List<dynamic> prog = json[PROGRAMS_FIELD];
-    prog.forEach((element) => (programs.add(ProgrammeInfo.fromJson(element))));
+  factory EpgInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final id = json[ID_FIELD];
+    final urls = json[URLS_FIELD].cast<String>();
+    final display_name = json[DISPLAY_NAME_FIELD];
+    final icon = json[ICON_FIELD];
+    List<ProgrammeInfo> programs = [];
+    json[PROGRAMS_FIELD].forEach((element) {
+      programs.add(ProgrammeInfo.fromJson(element));
+    });
+    return EpgInfo(id, urls, display_name, icon, programs);
   }
 
   Map<String, dynamic> toJson() {

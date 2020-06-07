@@ -14,6 +14,10 @@ class CatchupGenerateInfo {
   CatchupGenerateInfo(this.id, this.title, this.start, this.stop);
 
   factory CatchupGenerateInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final id = json[ID_FIELD];
     final start = json[START_FIELD];
     final stop = json[STOP_FIELD];

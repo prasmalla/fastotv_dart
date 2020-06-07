@@ -8,6 +8,10 @@ class AuthInfo extends LoginInfo {
   AuthInfo(login, password, this.device_id) : super(login, password);
 
   factory AuthInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final login = LoginInfo.fromJson(json);
     final device_id = json[DEVICE_ID_FIELD];
     return AuthInfo(login.login, login.password, device_id);

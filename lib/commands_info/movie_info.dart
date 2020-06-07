@@ -34,6 +34,10 @@ class MovieInfo {
       this.prime_date, this.country, this.duration, this.type);
 
   factory MovieInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final urls = json[URLS_FIELD].cast<String>();
     final description = json[DESCRIPTION_FIELD];
     final display_name = json[DISPLAY_NAME_FIELD];

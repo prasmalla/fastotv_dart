@@ -8,6 +8,10 @@ class LoginInfo {
   LoginInfo(this.login, this.password);
 
   factory LoginInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final login = json[LOGIN_FIELD];
     final password = json[PASSWORD_FIELD];
     return LoginInfo(login, password);

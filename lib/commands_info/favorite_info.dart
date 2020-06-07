@@ -7,9 +7,15 @@ class FavoriteInfo {
 
   FavoriteInfo(this.id, this.favorite);
 
-  FavoriteInfo.fromJson(Map<String, dynamic> json)
-      : id = json[ID_FIELD],
-        favorite = json[FAVORITE_FIELD];
+  factory FavoriteInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final id = json[ID_FIELD];
+    final favorite = json[FAVORITE_FIELD];
+    return FavoriteInfo(id, favorite);
+  }
 
   Map<String, dynamic> toJson() {
     return {ID_FIELD: id, FAVORITE_FIELD: favorite};

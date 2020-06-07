@@ -38,10 +38,16 @@ class NotificationTextInfo {
 
   NotificationTextInfo(this.message, this.type, this.show_time);
 
-  NotificationTextInfo.fromJson(Map<String, dynamic> json)
-      : message = json[TEXT_FIELD],
-        type = NotificationType.fromInt(json[TYPE_FIELD]),
-        show_time = json[SHOW_TIME_FIELD];
+  factory NotificationTextInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final message = json[TEXT_FIELD];
+    final type = NotificationType.fromInt(json[TYPE_FIELD]);
+    final show_time = json[SHOW_TIME_FIELD];
+    return NotificationTextInfo(message, type, show_time);
+  }
 
   Map<String, dynamic> toJson() {
     return {TEXT_FIELD: message, TYPE_FIELD: type.toInt(), SHOW_TIME_FIELD: show_time};
