@@ -32,9 +32,9 @@ class NotificationTextInfo {
   static const TYPE_FIELD = 'type';
   static const SHOW_TIME_FIELD = 'show_time';
 
-  final String message;
-  final NotificationType type;
-  final int showTime;
+  String message;
+  NotificationType type;
+  int showTime;
 
   static const MIN_TIME = 1;
   static const MAX_TIME = 3600;
