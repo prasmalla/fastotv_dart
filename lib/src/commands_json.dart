@@ -33,6 +33,10 @@ JsonRpcRequest catchupUndoRequest(String id, dynamic params) {
   return JsonRpcRequest(id: id, method: CLIENT_REQUEST_CATCHUP_UNDO, params: params);
 }
 
+JsonRpcRequest contentRequest(String id, dynamic params) {
+  return JsonRpcRequest(id: id, method: CLIENT_REQUEST_CONTENT, params: params);
+}
+
 JsonRpcRequest setFavoriteRequest(String id, dynamic param) {
   return JsonRpcRequest(id: id, method: CLIENT_SET_FAVORITE, params: param);
 }

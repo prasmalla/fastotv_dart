@@ -9,6 +9,7 @@ const String CLIENT_REQUEST_CATCHUP_UNDO = 'undo_catchup';
 const String CLIENT_SET_FAVORITE = 'set_favorite';
 const String CLIENT_INTERRUPT_STREAM_TIME = 'interrupt_time';
 const String CLIENT_SET_RECENT = 'set_recent';
+const String CLIENT_REQUEST_CONTENT = 'request_content';
 
 const String SERVER_PING = 'server_ping';
 const String SERVER_GET_CLIENT_INFO = 'get_client_info';
