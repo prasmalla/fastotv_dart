@@ -66,7 +66,7 @@ class RequestStatus {
   static const RequestStatus DONE = RequestStatus._(2);
 }
 
-class ContentRequestInfo {
+class CreateContentRequestInfo {
   static const TITLE_FIELD = 'title';
   static const CONTENT_TYPE_FIELD = 'type';
   static const REQUEST_STATUS_FIELD = 'status';
@@ -78,13 +78,13 @@ class ContentRequestInfo {
   static const MIN_TIME = 1;
   static const MAX_TIME = 3600;
 
-  ContentRequestInfo(this.title, this.type, this.status);
+  CreateContentRequestInfo(this.title, this.type, this.status);
 
   bool isValid() {
     return title != null && title.isNotEmpty && type != null && status != null;
   }
 
-  factory ContentRequestInfo.fromJson(Map<String, dynamic> json) {
+  factory CreateContentRequestInfo.fromJson(Map<String, dynamic> json) {
     if (json == null) {
       return null;
     }
@@ -92,10 +92,37 @@ class ContentRequestInfo {
     final title = json[TITLE_FIELD];
     final type = ContentType.fromInt(json[CONTENT_TYPE_FIELD]);
     final status = RequestStatus.fromInt(json[REQUEST_STATUS_FIELD]);
-    return ContentRequestInfo(title, type, status);
+    return CreateContentRequestInfo(title, type, status);
   }
 
   Map<String, dynamic> toJson() {
     return {TITLE_FIELD: title, CONTENT_TYPE_FIELD: type.toInt(), REQUEST_STATUS_FIELD: status.toInt()};
+  }
+}
+
+class ContentRequestInfo extends CreateContentRequestInfo {
+  static const ID_FIELD = 'id';
+
+  final String id;
+
+  ContentRequestInfo(this.id, String title, ContentType type, RequestStatus status) : super(title, type, status);
+
+  bool isValid() {
+    return id != null && super.isValid();
+  }
+
+  factory ContentRequestInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final CreateContentRequestInfo req = CreateContentRequestInfo.fromJson(json);
+    return ContentRequestInfo(json[ID_FIELD], req.title, req.type, req.status);
+  }
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> result = super.toJson();
+    result[ID_FIELD] = id;
+    return result;
   }
 }
