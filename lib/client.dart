@@ -18,6 +18,7 @@ import 'package:fastotv_dart/commands_info/login_info.dart';
 import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
 import 'package:fastotv_dart/commands_info/recent_info.dart';
 import 'package:fastotv_dart/commands_info/favorite_info.dart';
+import 'package:fastotv_dart/commands_info/content_request_info.dart';
 
 String generateHash(String data) {
   return md5.convert(utf8.encode(data)).toString();
@@ -120,6 +121,11 @@ class Client {
   void requestRuntimeChannelInfo(String sid) {
     RuntimeChannelLiteInfo run = RuntimeChannelLiteInfo(sid);
     var request = getRuntimeChannelInfoRequest(generateID(), run);
+    return _sendRequest(request);
+  }
+
+  void requestContent(ContentRequestInfo info) {
+    var request = contentRequest(generateID(), info);
     return _sendRequest(request);
   }
 
