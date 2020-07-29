@@ -124,8 +124,8 @@ class Client {
     return _sendRequest(request);
   }
 
-  void requestContent(ContentRequestInfo info) {
-    var request = contentRequest(generateID(), info);
+  void requestContent(CreateContentRequestInfo info) {
+    var request = createContentRequest(generateID(), info);
     return _sendRequest(request);
   }
 
