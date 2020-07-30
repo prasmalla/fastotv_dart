@@ -20,7 +20,7 @@ class ContentType {
     if (value == 0) {
       return ContentType.LIVE;
     } else if (value == 1) {
-      return ContentType.LIVE;
+      return ContentType.VODS;
     }
     return ContentType.SERIAL;
   }
