@@ -80,6 +80,10 @@ class CreateContentRequestInfo {
 
   CreateContentRequestInfo(this.title, this.type, this.status);
 
+  CreateContentRequestInfo copy() {
+    return CreateContentRequestInfo(title, type, status);
+  }
+
   bool isValid() {
     return title != null && title.isNotEmpty && type != null && status != null;
   }
@@ -107,8 +111,12 @@ class ContentRequestInfo extends CreateContentRequestInfo {
 
   ContentRequestInfo(this.id, String title, ContentType type, RequestStatus status) : super(title, type, status);
 
+  ContentRequestInfo copy() {
+    return ContentRequestInfo(id, title, type, status);
+  }
+
   bool isValid() {
-    return id != null && super.isValid();
+    return super.isValid();
   }
 
   factory ContentRequestInfo.fromJson(Map<String, dynamic> json) {
