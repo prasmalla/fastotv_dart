@@ -9,4 +9,5 @@ environment:
 dependencies:
   crypto:
   archive:
+  xml: '^4.3.0'
   quiver: '>=2.0.0 <3.0.0'
