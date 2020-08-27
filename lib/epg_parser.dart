@@ -1,7 +1,7 @@
 import 'dart:core';
 
 import 'package:fastotv_dart/commands_info/programme_info.dart';
-import 'package:xml/xml.dart';
+import 'package:xml/xml.dart' as xml;
 
 const String TV_TAG = 'tv';
 const String CHANNEL_TAG = 'channel';
@@ -41,7 +41,7 @@ int _getUtcMSecFromXMLTVString(String data) {
 List<ProgrammeInfo> parseXmlContent(String data) {
   List<ProgrammeInfo> result = [];
   try {
-    final document = XmlDocument.parse(data);
+    final document = xml.parse(data);
     final tv = document.findElements(TV_TAG);
     tv.forEach((elem) {
       final programmes = elem.findElements(PROGRAMME_TAG);
