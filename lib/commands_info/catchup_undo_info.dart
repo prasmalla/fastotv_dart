@@ -14,5 +14,7 @@ class CatchupUndoInfo {
     return CatchupUndoInfo(id);
   }
 
-  Map<String, dynamic> toJson() => {ID_FIELD: id};
+  Map<String, dynamic> toJson() {
+    return {ID_FIELD: id};
+  }
 }

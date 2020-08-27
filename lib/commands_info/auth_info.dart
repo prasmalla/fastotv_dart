@@ -33,6 +33,10 @@ class ServerAuthInfo extends AuthInfo {
 
   factory ServerAuthInfo.fromJson(Map<String, dynamic> json) {
     final login = AuthInfo.fromJson(json);
+    if (login == null) {
+      return null;
+    }
+
     final exp_date = json[EXPIRED_DATE_FIELD];
     return ServerAuthInfo(login.login, login.password, login.device_id, exp_date);
   }

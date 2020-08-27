@@ -1,6 +1,5 @@
-import 'package:intl/intl.dart';
-
 import 'package:fastotv_dart/commands_info/programme_info.dart';
+import 'package:intl/intl.dart';
 
 class TimeParser {
   static const FORMAT_HOUR_MINUTE = 'HH:mm';

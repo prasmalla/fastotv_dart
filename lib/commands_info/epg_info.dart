@@ -27,7 +27,10 @@ class EpgInfo {
     final icon = json[ICON_FIELD];
     List<ProgrammeInfo> programs = [];
     json[PROGRAMS_FIELD].forEach((element) {
-      programs.add(ProgrammeInfo.fromJson(element));
+      final ProgrammeInfo program = ProgrammeInfo.fromJson(element);
+      if (program != null) {
+        programs.add(program);
+      }
     });
     return EpgInfo(id, urls, display_name, icon, programs);
   }

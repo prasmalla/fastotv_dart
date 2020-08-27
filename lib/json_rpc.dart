@@ -6,8 +6,7 @@ class JsonRpcRequest {
   final String id;
   Optional<dynamic> params = Optional<dynamic>.absent();
 
-  JsonRpcRequest({this.id, this.method, dynamic params = null})
-      : params = Optional<dynamic>.fromNullable(params) {}
+  JsonRpcRequest({this.id, this.method, dynamic params = null}) : params = Optional<dynamic>.fromNullable(params) {}
 
   bool isValid() {
     return method.isNotEmpty;
@@ -27,11 +26,7 @@ class JsonRpcRequest {
       return result;
     }
 
-    Map<String, dynamic> result = {
-      'jsonrpc': jsonrpc,
-      'id': id,
-      'method': method
-    };
+    Map<String, dynamic> result = {'jsonrpc': jsonrpc, 'id': id, 'method': method};
     if (params.isPresent) {
       result['params'] = params.value;
     }

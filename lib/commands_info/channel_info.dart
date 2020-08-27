@@ -17,7 +17,7 @@ class ChannelInfo extends StreamBaseInfo {
     return epg.urls[0];
   }
 
-  String getIcon() {
+  String icon() {
     return epg.icon;
   }
 
@@ -27,7 +27,15 @@ class ChannelInfo extends StreamBaseInfo {
     }
 
     final base = StreamBaseInfo.fromJson(json);
+    if (base == null) {
+      return null;
+    }
+
     final epg = EpgInfo.fromJson(json[EPG_FIELD]);
+    if (epg == null) {
+      return null;
+    }
+
     return ChannelInfo(base.id, base.groups, base.iarc, base.favorite, base.recent, base.interrupt_time, base.locked,
         epg, base.video, base.audio, base.parts, base.view_count, base.meta);
   }

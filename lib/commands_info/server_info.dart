@@ -16,5 +16,7 @@ class ServerInfo {
     return ServerInfo(epg_url, locked_stream_text);
   }
 
-  Map<String, dynamic> toJson() => {EPG_URL_FIELD: epg_url, LOCKED_STREAM_TEXT_FIELD: locked_stream_text};
+  Map<String, dynamic> toJson() {
+    return {EPG_URL_FIELD: epg_url, LOCKED_STREAM_TEXT_FIELD: locked_stream_text};
+  }
 }

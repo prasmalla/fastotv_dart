@@ -36,8 +36,14 @@ class CatchupQueueInfo {
 
   factory CatchupQueueInfo.fromJson(Map<String, dynamic> json) {
     final catchup = CatchupInfo.fromJson(json[CATCHUP_FIELD]);
+    if (catchup == null) {
+      return null;
+    }
+
     return CatchupQueueInfo(catchup);
   }
 
-  Map<String, dynamic> toJson() => {CATCHUP_FIELD: catchup.toJson()};
+  Map<String, dynamic> toJson() {
+    return {CATCHUP_FIELD: catchup.toJson()};
+  }
 }

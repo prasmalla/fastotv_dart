@@ -48,6 +48,10 @@ class Project {
   Project(this.name, this.version);
 
   factory Project.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     final name = json[NAME_FIELD];
     final version = json[VERSION_FILED];
     return Project(name, version);
@@ -74,10 +78,22 @@ class ClientInfo {
   ClientInfo(this.login, this.device_id, this.project, this.os, this.cpu_brand);
 
   factory ClientInfo.fromJson(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
+    final project = Project.fromJson(json[PROJECT_FILED]);
+    if (project == null) {
+      return null;
+    }
+
+    final os = OperationSystemInfo.fromJson(json[OS_FILED]);
+    if (os == null) {
+      return null;
+    }
+
     final login = json[LOGIN_FILED];
     final device_id = json[DEVICE_ID_FILED];
-    final project = Project.fromJson(json[PROJECT_FILED]);
-    final os = OperationSystemInfo.fromJson(json[OS_FILED]);
     final cpu_brand = json[CPU_BRAND_FILED];
     return ClientInfo(login, device_id, project, os, cpu_brand);
   }

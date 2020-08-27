@@ -1,5 +1,5 @@
-import 'package:fastotv_dart/json_rpc.dart';
 import 'package:fastotv_dart/commands.dart';
+import 'package:fastotv_dart/json_rpc.dart';
 
 JsonRpcRequest activateRequest(String id, dynamic params) {
   return JsonRpcRequest(id: id, method: CLIENT_ACTIVATE_DEVICE, params: params);

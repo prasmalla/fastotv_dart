@@ -1,24 +1,22 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:convert';
 
-import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
-
-import 'package:fastotv_dart/json_rpc.dart';
-import 'package:fastotv_dart/src/commands_json.dart';
-
+import 'package:crypto/crypto.dart';
+import 'package:fastotv_dart/commands.dart';
 import 'package:fastotv_dart/commands_info/auth_info.dart';
-import 'package:fastotv_dart/commands_info/client_info.dart';
-import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
 import 'package:fastotv_dart/commands_info/catchup_generate_info.dart';
 import 'package:fastotv_dart/commands_info/catchup_undo_info.dart';
-import 'package:fastotv_dart/commands.dart';
-import 'package:fastotv_dart/commands_info/login_info.dart';
-import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
-import 'package:fastotv_dart/commands_info/recent_info.dart';
-import 'package:fastotv_dart/commands_info/favorite_info.dart';
+import 'package:fastotv_dart/commands_info/client_info.dart';
 import 'package:fastotv_dart/commands_info/content_request_info.dart';
+import 'package:fastotv_dart/commands_info/favorite_info.dart';
+import 'package:fastotv_dart/commands_info/interrupt_stream_info.dart';
+import 'package:fastotv_dart/commands_info/login_info.dart';
+import 'package:fastotv_dart/commands_info/recent_info.dart';
+import 'package:fastotv_dart/commands_info/runtime_channel_info.dart';
+import 'package:fastotv_dart/json_rpc.dart';
+import 'package:fastotv_dart/src/commands_json.dart';
 
 String generateHash(String data) {
   return md5.convert(utf8.encode(data)).toString();
@@ -71,7 +69,7 @@ class Client {
       if (_observer != null) {
         _observer.onConnectionStateChanged(ClientConnectionState.CONNECTED);
       }
-    } catch (exception, trace) {
+    } catch (exception) {
       if (_observer != null) {
         _observer.onConnectionStateChanged(ClientConnectionState.DISCONNECTED);
         _observer.onDisconnected(exception);

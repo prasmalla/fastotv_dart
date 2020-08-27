@@ -23,8 +23,8 @@ class ProgrammeInfo {
   Optional<String> description = Optional<String>.absent();
 
   ProgrammeInfo(this.channel, this.start, this.stop, this.title, String cat, String desc)
-      : category = _getOptional(cat),
-        description = _getOptional(desc);
+      : category = Optional<String>.fromNullable(cat),
+        description = Optional<String>.fromNullable(desc);
 
   factory ProgrammeInfo.fromJson(Map<String, dynamic> json) {
     if (json == null) {
@@ -41,12 +41,7 @@ class ProgrammeInfo {
   }
 
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> result = {
-      CHANNEL_FIELD: channel,
-      START_FIELD: start,
-      STOP_FIELD: stop,
-      TITLE_FIELD: title
-    };
+    Map<String, dynamic> result = {CHANNEL_FIELD: channel, START_FIELD: start, STOP_FIELD: stop, TITLE_FIELD: title};
     if (category.isPresent) {
       result[CATEGORY_FIELD] = category.value;
     }
@@ -80,13 +75,5 @@ class ProgrammeInfo {
     final diff = stopTime - startTime;
     final twoDigitMinutes = _twoDigits(diff.inMinutes.remainder(60));
     return '${_twoDigits(diff.inHours)}:$twoDigitMinutes';
-  }
-
-  static Optional<String> _getOptional(String desc) {
-    if (desc != null) {
-      return Optional<String>.fromNullable(desc);
-    }
-
-    return Optional<String>.absent();
   }
 }

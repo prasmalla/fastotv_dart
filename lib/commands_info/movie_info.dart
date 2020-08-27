@@ -52,16 +52,18 @@ class MovieInfo {
         urls, description, display_name, preview_icon, trailer_url, user_score, prime_date, country, duration, type);
   }
 
-  Map<String, dynamic> toJson() => {
-        URLS_FIELD: urls,
-        DESCRIPTION_FIELD: description,
-        DISPLAY_NAME_FIELD: display_name,
-        PREVIEW_ICON_FIELD: preview_icon,
-        TRAILER_URL_FIELD: trailer_url,
-        USER_SCORE_FIELD: user_score,
-        PRIME_DATE_FIELD: prime_date,
-        COUNTRY_FIELD: country,
-        DURATION_FIELD: duration,
-        TYPE_FIELD: type
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      URLS_FIELD: urls,
+      DESCRIPTION_FIELD: description,
+      DISPLAY_NAME_FIELD: display_name,
+      PREVIEW_ICON_FIELD: preview_icon,
+      TRAILER_URL_FIELD: trailer_url,
+      USER_SCORE_FIELD: user_score,
+      PRIME_DATE_FIELD: prime_date,
+      COUNTRY_FIELD: country,
+      DURATION_FIELD: duration,
+      TYPE_FIELD: type
+    };
+  }
 }
