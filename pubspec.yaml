@@ -9,6 +9,6 @@ environment:
 dependencies:
   crypto:
   archive:
-  xml: '>=3.0.0'
+  xml: '>=4.4.1'
   quiver: '>=2.0.0 <3.0.0'
   intl: '^0.16.1'
