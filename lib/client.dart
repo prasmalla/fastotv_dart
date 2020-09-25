@@ -23,6 +23,7 @@ String generateHash(String data) {
 }
 
 enum ClientConnectionState { DISCONNECTED, CONNECTED, ACTIVE }
+enum CompressedType { C_NONE, C_STANDART }
 
 abstract class IClientObserver {
   void processRequest(JsonRpcRequest req);
@@ -42,6 +43,7 @@ class Client {
   int _id = 0;
   final Map<String, JsonRpcRequest> _requests = {};
   List<int> _recvBuffer = [];
+  final CompressedType _compressed = CompressedType.C_STANDART;
 
   Client();
 
@@ -187,13 +189,12 @@ class Client {
       return;
     }
 
-    String req = json.encode(request);
-    List<int> gzipped = gzip.encode(req.codeUnits);
-
     if (!request.isNotification()) {
       _requests[request.id] = request;
     }
-    _send(gzipped);
+    final String req = json.encode(request);
+    final List<int> toSend = _prepareToSend(req);
+    _send(toSend);
   }
 
   void _sendResponse(JsonRpcResponse resp) {
@@ -201,9 +202,9 @@ class Client {
       return;
     }
 
-    String respStr = json.encode(resp);
-    List<int> gzipped = gzip.encode(respStr.codeUnits);
-    _send(gzipped);
+    final String respStr = json.encode(resp);
+    final List<int> toSend = _prepareToSend(respStr);
+    _send(toSend);
   }
 
   void _send(List<int> data) {
@@ -230,7 +231,7 @@ class Client {
   }
 
   bool _processMessage(List<int> payload) {
-    List<int> decoded = gzip.decode(payload);
+    List<int> decoded = _prepareToReceive(payload);
     String req_or_resp_data = String.fromCharCodes(decoded);
     Map<String, dynamic> request_or_response = json.decode(req_or_resp_data);
     if (request_or_response.isEmpty) {
@@ -294,5 +295,20 @@ class Client {
       _recvBuffer = _recvBuffer.sublist(message_size);
       _handleData();
     }
+  }
+
+  // prepare methods
+  List<int> _prepareToSend(String req) {
+    if (_compressed == CompressedType.C_STANDART) {
+      return gzip.encode(req.codeUnits);
+    }
+    return req.codeUnits;
+  }
+
+  List<int> _prepareToReceive(List<int> payload) {
+    if (_compressed == CompressedType.C_STANDART) {
+      return gzip.decode(payload);
+    }
+    return payload;
   }
 }
